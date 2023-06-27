@@ -455,7 +455,7 @@ Overall the pattern is nothing groundbreaking or new - it's simply a list you pr
 
 Nonetheless I've found it helpful to give the pattern a name, to make it _a thing_, a tool I can then consider when solving certain problems.
 
-So, go forth and ~multiply~ make some TODOs!
+So, go forth and <del>multiply</del> make some TODOs!
 
 ##### Acknowledgements
 
