@@ -43,3 +43,8 @@ hr {
   font-size: 2.5em;
   opacity: 0.3;
 }
+
+.archive-link {
+  margin-top: 20px;
+  text-align: center;
+}
