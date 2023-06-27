@@ -16,7 +16,10 @@ youtube_username: "MartinJaniczek"
 theme: "minima"
 
 minima:
-  skin: solarized-light
+  skin: "solarized-light"
+
+disqus:
+  shortname: janiczek
 
 rss: rss
 
@@ -35,6 +38,7 @@ titles_from_headings:
 defaults:
   - scope:
       path: ""
-      type: post
+      type: posts
     values:
-      tags: Other
+      tags: Posts
+
