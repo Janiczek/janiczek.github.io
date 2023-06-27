@@ -13,10 +13,7 @@ youtube_username: "MartinJaniczek"
 #########################################################################################
 ######### Nothing below needs to be changed (unless you know what you're doing) #########
 #########################################################################################
-theme: "minima"
-
-minima:
-  skin: mj
+remote_theme: pages-themes/primer@v0.6.0
 
 disqus:
   shortname: janiczek
@@ -30,6 +27,7 @@ kramdown:
 plugins:
   - jekyll-feed
   - jekyll-sitemap
+  - jekyll-remote-theme
 
 titles_from_headings:
   strip_title: true

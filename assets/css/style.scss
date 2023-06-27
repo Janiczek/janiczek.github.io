@@ -1,0 +1,18 @@
+---
+---
+$body-font: "Source Serif 4", serif;
+$mono-font: "JetBrains Mono", monospace;
+$container-width: 600px;
+$width-md: 600px;
+$width-lg: 600px;
+$width-xl: 600px;
+$container-md: 600px;
+$container-lg: 600px;
+$container-xl: 600px;
+
+@import "{{ site.theme }}";
+
+.markdown-body pre {
+  margin-left: -150px;
+  margin-right: -150px;
+}
