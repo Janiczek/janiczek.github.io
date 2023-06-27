@@ -17,6 +17,7 @@ hr {
 .post_navi .post_navi-item {
   padding: 0 2.2em;
   width: 50%;
+  min-width: 50%;
   position: relative;
 }
 
@@ -53,7 +54,17 @@ hr {
   color: initial !important;
 }
 
-.archive-link {
+.footer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  border-top: 1px solid #eaecef;
+  padding-top: 20px;
   margin-top: 20px;
-  text-align: center;
 }
+.footer div {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+}
+

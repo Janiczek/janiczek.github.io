@@ -1,22 +1,11 @@
 title: "Martin Janiczek"
 author: "Martin Janiczek"
-description: "" # This will show up in places like twitter, linkedin, etc, if you share your sites url as a post.
+description: ""
 
-# Email / Social media user names used by the minima theme:
-# All of these are optional and can be removed or commented out
-email: "martin@janiczek.cz"
 twitter_username: "janiczek"
 github_username: "janiczek"
-linkedin_username: "martin-janiczek"
-youtube_username: "MartinJaniczek"
 
-#########################################################################################
-######### Nothing below needs to be changed (unless you know what you're doing) #########
-#########################################################################################
 remote_theme: pages-themes/primer@v0.6.0
-
-disqus:
-  shortname: janiczek
 
 rss: rss
 

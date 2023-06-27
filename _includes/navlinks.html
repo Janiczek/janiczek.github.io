@@ -6,7 +6,7 @@
     <div class="post_navi-arrow">&lt;</div><div class="post_navi-label">Previous Post</div><div><span class="post_navi-title">{{ page.previous.title }}</span></div>
   </a>
   {%- else -%}
-  <span class="post_navi-item nav_prev"></span>
+  <div class="post_navi-item nav_prev"></div>
   {%- endif -%}
 
   {%- if page.next.url -%}
@@ -14,11 +14,9 @@
     <div class="post_navi-arrow">&gt;</div><div class="post_navi-label">Next Post</div><div><span class="post_navi-title">{{ page.next.title }}</span></div>
   </a>
   {%- else -%}
-  <span class="post_navi-item nav_next"></span>
+  <div class="post_navi-item nav_next"></div>
   {%- endif -%}
 
 </div>
 
-<hr>
-
-<div class="archive-link"><a href="{{ 'index.html' | absolute_url }}" title="Blog Archive">Archive</a></div>
+{% include footer.html %}
