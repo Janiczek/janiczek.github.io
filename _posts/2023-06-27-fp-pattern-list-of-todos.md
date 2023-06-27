@@ -27,7 +27,8 @@ process input =
 
         todo :: rest ->
           if somePredicate todo then
-            -- possibly end instead of recursing (eg. in search problems)
+            -- possibly end instead of recursing
+            -- (eg. in search problems)
             ...
 
           else
@@ -36,9 +37,9 @@ process input =
               addedTodos = ... -- derived from `todo`
             in
             -- remember the new TODOs and recurse!
-            go (rest ++ addedTodos)  -- queue, breadth-first search
+            go (rest ++ addedTodos) -- queue, breadth-first
             -- or:
-            -- go (addedTodos ++ rest) -- stack, depth-first search
+            -- go (addedTodos ++ rest) -- stack, depth-first
   in
   go (initTodos input)
 ```
@@ -67,8 +68,8 @@ type Job a
 type Step
   = InSequence Int
   | InParallel Int
-  | InConditionTrue Int
-  | InConditionFalse Int
+  | InCondTrue Int
+  | InCondFalse Int
 ```
 
 For example, a value
@@ -119,39 +120,47 @@ values
 , ( 2, [ InParallel 0, InSequence 1 ] )
 , ( 3, [ InParallel 1 ] )
 , ( 4, [ InParallel 2 ] )
-, ( 5, [ InParallel 2, InConditionTrue 0 ] )
-, ( 6, [ InParallel 2, InConditionFalse 0, InParallel 0 ] )
-, ( 7, [ InParallel 2, InConditionFalse 0, InParallel 1 ] )
+, ( 5, [ InParallel 2, InCondTrue 0 ] )
+, ( 6, [ InParallel 2, InCondFalse 0, InParallel 0 ] )
+, ( 7, [ InParallel 2, InCondFalse 0, InParallel 1 ] )
 ]
 ```
 
 Without further ado, here's the implementation using our "make a TODO list and process it one-by-one" pattern:
 
 ```elm
+type alias Todo = (Job a, List Step)
+type alias Acc = List (a, List Step)
+type alias Output = List (a, List Step)
+
 values : Job a -> List (a, List Step)
 values rootJob =
   let
-    --        _______TODO________
-    go : List (Job a, List Step) -> List (a, List Step) -> List (a, List Step)
+    go : List Todo -> Acc -> Output
     go todos acc =
       case todos of
         [] ->
-          -- we're finished! Return the items found so far (and fix the order)
+          -- We're finished!
+          -- Return the items found so far (and fix the order)
           List.reverse acc
         
         (job, revPath) :: rest ->
           case job of
             Leaf a ->
-              -- no children to add as TODOs, but we have a new value to output
+              -- No children to add as TODOs
+              -- But we have a new value to output
               go rest ((a, List.reverse revPath) :: acc)
             
             Sequence xs ->
-              -- no new values to output, but we have children to add as TODOs!
-              -- we need to compute a new path for each of them
+              -- No new values to output
+              -- But we have children to add as TODOs!
+              -- We need to compute a new path for each of them
               let
                 newTodos : List (Job a, List Step)
                 newTodos =
-                  xs |> List.indexedMap (\i x -> (x, InSequence i :: revPath))
+                  List.indexedMap 
+                    (\i x -> (x, InSequence i :: revPath))
+                    xs
               in
               go (newTodos ++ rest) acc
             
@@ -160,18 +169,25 @@ values rootJob =
               let
                 newTodos : List (Job a, List Step)
                 newTodos =
-                  xs |> List.indexedMap (\i x -> (x, InParallel i :: revPath))
+                  List.indexedMap
+                    (\i x -> (x, InParallel i :: revPath))
+                    xs
               in
               go (newTodos ++ rest) acc
             
             Condition a {trueSeq, falseSeq} ->
-              -- we have both a new value to output and new TODOs to process
+              -- We have both a new value to output
+              -- and new TODOs to process
               let
                 newTodos : List (Job a, List Step)
                 newTodos =
                   List.concat
-                    [ trueSeq |> List.indexedMap (\i x -> (x, InConditionTrue i :: revPath))
-                    , falseSeq |> List.indexedMap (\i x -> (x, InConditionFalse i :: revPath))
+                    [ List.indexedMap 
+                        (\i x -> (x, InCondTrue i :: revPath))
+                        trueSeq
+                    , List.indexedMap
+                        (\i x -> (x, InCondFalse i :: revPath))
+                        falseSeq
                     ]
               in
               go
@@ -193,7 +209,10 @@ It's instructive to see the execution of the `values` function, so let's add a `
 
 ```diff
 -go todos acc =
-+go todos acc = let _ = Debug.log "go" { todos = todos, acc = acc } in
++go todos acc =
++  let
++    _ = Debug.log "go" { todos = todos, acc = acc }
++  in
 ```
 
 Running the function on a (smaller) example now yields this (with whitespace added for clarity):
@@ -207,7 +226,10 @@ values
     ]
   )
 -->
-go: { todos = [ ( Sequence [ Leaf 1, Parallel [ Leaf 2, Leaf 3 ], Leaf 4 ] -- a TODO node
+go: { todos = [ ( Sequence [ Leaf 1
+                           , Parallel [ Leaf 2, Leaf 3 ]
+                           , Leaf 4
+                           ] -- a TODO node
                 , [] -- path leading to this node
                 )
               ]
@@ -227,7 +249,8 @@ go: { todos = [ ( Parallel [ Leaf 2, Leaf 3 ], [ InSequence 1 ] )
     , acc = [ ( 1, [ InSequence 0 ] ) ]
     }
 
-go: { todos = [ ( Leaf 2, [ InParallel 0, InSequence 1 ] ) -- note the paths are in reverse
+go: { todos = [ ( Leaf 2, [ InParallel 0, InSequence 1 ] )
+                -- note the paths are in reverse ^
               , ( Leaf 3, [ InParallel 1, InSequence 1 ] )
               , ( Leaf 4, [ InSequence 2 ] )
               ]
@@ -237,9 +260,12 @@ go: { todos = [ ( Leaf 2, [ InParallel 0, InSequence 1 ] ) -- note the paths are
 go: { todos = [ ( Leaf 3, [ InParallel 1, InSequence 1 ] )
               , ( Leaf 4, [ InSequence 2 ] )
               ]
-    , acc = [ ( 2, [ InSequence 1, InParallel 0 ] ) -- we fix (reverse) them when adding them to `acc`
-            , ( 1, [ InSequence 0 ] ) -- `acc` is _also_ in reverse order (2 then 1)
-            ]                         -- we'll fix it when returning from the `go` function
+    , acc = [ ( 2, [ InSequence 1, InParallel 0 ] )
+              -- we fix (reverse) them when adding them to `acc`
+            , ( 1, [ InSequence 0 ] )
+            -- `acc` is _also_ in reverse order (2 then 1)
+            -- we'll fix it when returning from the `go` function
+            ]
     }
 
 go: { todos = [ ( Leaf 4, [ InSequence 2 ] ) ]
@@ -311,27 +337,31 @@ find pred rootJob =
     go todos =
       case todos of
         [] ->
-          -- We didn't find any value that would fit the predicate!
+          -- We didn't find any value that would fit the predicate
           Nothing
           
         (job, revPath) :: rest ->
           case job of
             Leaf a ->
-              -- A value - let's test it. This is our chance to stop.
+              -- A value - let's test it.
+              -- This is our chance to stop early.
               if pred a then
                 -- Found it!
                 Just (a, List.reverse revPath)
               
               else
-                -- Nevermind - perhaps it will be in one of the other TODOs.
+                -- Nevermind, let's continue with other TODOs
                 go rest
             
             Sequence xs ->
-              -- We can't test any value here, but we can unwrap the Sequence and make a bunch of _smaller_ TODOs from it.
+              -- We can't test any value here
+              -- But we make a bunch of _smaller_ TODOs from `xs`
               let
                 newTodos : List (Job a, List Step)
                 newTodos =
-                  xs |> List.indexedMap (\i x -> (x, InSequence i :: revPath))
+                  List.indexedMap
+                    (\i x -> (x, InSequence i :: revPath))
+                    xs
               in
               go (newTodos ++ rest)
             
@@ -339,7 +369,9 @@ find pred rootJob =
               let
                 newTodos : List (Job a, List Step)
                 newTodos =
-                  xs |> List.indexedMap (\i x -> (x, InParallel i :: revPath))
+                  List.indexedMap
+                    (\i x -> (x, InParallel i :: revPath))
+                    xs
               in
               go (newTodos ++ rest)
             
@@ -354,8 +386,12 @@ find pred rootJob =
                   newTodos : List (Job a, List Step)
                   newTodos =
                     List.concat
-                      [ trueSeq |> List.indexedMap (\i x -> (x, InConditionTrue i :: revPath))
-                      , falseSeq |> List.indexedMap (\i x -> (x, InConditionFalse i :: revPath))
+                      [ List.indexedMap
+                          (\i x -> (x, InCondTrue i :: revPath))
+                          trueSeq
+                      , List.indexedMap
+                          (\i x -> (x, InCondFalse i :: revPath))
+                          falseSeq
                       ]
                 in
                 go (newTodos ++ rest)

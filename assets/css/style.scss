@@ -11,8 +11,3 @@ $container-lg: 600px;
 $container-xl: 600px;
 
 @import "{{ site.theme }}";
-
-.markdown-body pre {
-  margin-left: -150px;
-  margin-right: -150px;
-}

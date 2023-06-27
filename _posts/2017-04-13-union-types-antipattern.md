@@ -45,8 +45,10 @@ score model =
     else if model.towns.praha.selected then
         model.towns.praha.score
     else
-        -- pick one of the two above and use it as a default?
-        -- ... or wrap everything here in Maybe and have THAT propagate above?
+        {- pick one of the two above and use it as a default?
+           ... or wrap everything here in Maybe and
+           have THAT propagate above?
+        -}
         ???
 ```
 

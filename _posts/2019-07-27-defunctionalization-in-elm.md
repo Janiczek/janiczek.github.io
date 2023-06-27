@@ -68,7 +68,8 @@ fetchForRoute route =
 As you can see, we use a `fetchMany` function which allows us to compose these together. It's essentially a `List.foldl` over our `(Store, Cmd msg)` type, with the catch that the fetch functions need a bunch of other stuff in parameters.
 
 ```elm
-fetchMany : List (Config msg -> Flags -> Store -> ( Store, Cmd msg )) -> Config msg -> Flags -> Store -> ( Store, Cmd msg )
+fetchMany : List (Config msg -> Flags -> Store -> ( Store, Cmd msg ))
+               -> Config msg -> Flags -> Store -> ( Store, Cmd msg )
 fetchMany list config flags store =
     List.foldl
         (\fetchAction ( currentStore, currentCmd ) ->
@@ -93,7 +94,9 @@ type alias Config msg =
     , navigateTo : Route -> msg
     , openAlert : String -> String -> msg
     , refreshAudiences : msg
-    , fetchMany : List (Store.Config Msg -> Flags -> Store.Store -> ( Store.Store, Cmd Msg )) -> msg
+    , fetchMany : List (Store.Config Msg -> Flags -> Store.Store
+                        -> ( Store.Store, Cmd Msg )
+                       ) -> msg
     , disabledExportsAlert : msg
     }
 ```
@@ -102,37 +105,47 @@ To not get into too many details, we have to do this in one more level because o
 
 ```elm
 type Msg
-    = FetchMany (List (Store.Config Msg -> Flags -> Store.Store -> ( Store.Store, Cmd Msg )))
+    = FetchMany (List (Store.Config Msg -> Flags -> Store.Store
+                       -> ( Store.Store, Cmd Msg )
+                      )
+                )
     -- | ...
 
-crosstabBuilderConfig : CrosstabBuilderComponent.Config Msg
+crosstabBuilderConfig : XB.Config Msg
 crosstabBuilderConfig =
     { msg = CrosstabBuilderMsg
     , ajaxError = AjaxError
     , navigateTo = NavigateTo
     , openAlert = OpenAlert
     , refreshAudiences = RefreshAudiences
-    , fetchMany =
-        \list ->
-            let
-                innerConfig : Store.Config (CrosstabBuilderComponent.Msg Msg)
-                innerConfig =
-                    Store.configure
-                        { msg = CrosstabBuilderComponent.OuterMsg << StoreMsg
-                        , err = \store error -> CrosstabBuilderComponent.OuterMsg <| AjaxError store error
-                        }
-
-                changeFn :
-                    (Store.Config (CrosstabBuilderComponent.Msg Msg) -> Flags -> Store.Store -> ( Store.Store, Cmd (CrosstabBuilderComponent.Msg Msg) ))
-                    -> (Store.Config Msg -> Flags -> Store.Store -> ( Store.Store, Cmd Msg ))
-                changeFn fn =
-                    \_ flags store ->
-                        fn innerConfig flags store
-                            |> Glue.map CrosstabBuilderMsg
-            in
-            FetchMany (List.map changeFn list)
+    , fetchMany = fetchMany
     , disabledExportsAlert = DisabledExportsAlert
     }
+
+fetchMany list =
+    let
+        innerConfig : Store.Config (XB.Msg Msg)
+        innerConfig =
+            Store.configure
+                { msg = XB.OuterMsg << StoreMsg
+                , err = \store error ->
+                            XB.OuterMsg
+                                (AjaxError store error)
+                }
+
+        changeFn :
+            (Store.Config (XB.Msg Msg) -> Flags
+              -> Store.Store -> ( Store.Store, Cmd (XB.Msg Msg) )
+            )
+            -> (Store.Config Msg -> Flags -> Store.Store
+                 -> ( Store.Store, Cmd Msg )
+               )
+        changeFn fn =
+            \_ flags store ->
+                fn innerConfig flags store
+                    |> Glue.map CrosstabBuilderMsg
+    in
+    FetchMany (List.map changeFn list)
 ```
 
 *Bleh.* All this was essentially `Msg` mapping to appease the type system, and it got very complicated very fast.
@@ -152,13 +165,15 @@ type FetchAction
     -- | ...
 
 
-fetch : FetchAction -> Config msg -> Flags -> Store -> ( Store, Cmd msg )
+fetch : FetchAction -> Config msg -> Flags -> Store
+        -> ( Store, Cmd msg )
 fetch =
     -- exercise for the reader
     Debug.todo "Store.fetch"
 
 
-fetchMany : List FetchAction -> Config msg -> Flags -> Store -> ( Store, Cmd msg )
+fetchMany : List FetchAction -> Config msg -> Flags -> Store
+            -> ( Store, Cmd msg )
 fetchMany =
     -- exercise for the reader
     Debug.todo "Store.fetchMany"
@@ -174,7 +189,7 @@ type Msg
     -- | ...
 
 
-crosstabBuilderConfig : CrosstabBuilderComponent.Config Msg
+crosstabBuilderConfig : XB.Config Msg
 crosstabBuilderConfig =
     { msg = CrosstabBuilderMsg
     , ajaxError = AjaxError
