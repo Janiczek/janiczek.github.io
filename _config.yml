@@ -15,6 +15,9 @@ youtube_username: "MartinJaniczek"
 #########################################################################################
 theme: "minima"
 
+minima:
+  skin: solarized-light
+
 rss: rss
 
 kramdown:

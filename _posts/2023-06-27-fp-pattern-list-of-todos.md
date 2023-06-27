@@ -93,7 +93,7 @@ Sequence
 
 represents this Job workflow:
 
-![An example Job value](./2023-06-27-job-example.png)
+![An example Job value](/assets/images/2023-06-27-job-example.png)
 
 The function to list all values of a `Job` will have this type signature:
 
