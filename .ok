@@ -1,2 +1,3 @@
-serve: /opt/homebrew/opt/ruby/bin/bundle exec jekyll serve
-build: /opt/homebrew/opt/ruby/bin/bundle exec jekyll build
+install: /opt/homebrew/opt/ruby/bin/bundle install
+serve:   /opt/homebrew/opt/ruby/bin/bundle exec jekyll serve
+build:   /opt/homebrew/opt/ruby/bin/bundle exec jekyll build

@@ -61,6 +61,7 @@ hr {
   border-top: 1px solid #eaecef;
   padding-top: 20px;
   margin-top: 20px;
+  gap: 20px;
 }
 .footer div {
   display: flex;
