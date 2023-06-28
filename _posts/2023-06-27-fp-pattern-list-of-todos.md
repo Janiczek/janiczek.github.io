@@ -304,7 +304,7 @@ Instead of calling the function `n` times, we add `n` TODOs to the list. We're m
 
 There's an important "sub-genre" of problems that can be done with this general "list of TODOs" shape: searches.
 
-These generally bail out early (as soon as they find a solution), but sometimes need to find a _best_ solution, which then also leads to exhausting all options.
+These generally bail out early (as soon as they find a solution), but sometimes need to find a _best_ solution, which then _can_ also lead to exhausting all options.
 
 This is how I first encountered the pattern - Advent of Code has a lot of maze-solving, [Dijkstra's algorithm](https://en.wikipedia.org/wiki/Dijkstra%27s_algorithm), flood-fill, optimization problems and so on. If examining one path gives me three more possible paths to take, I just add them as new TODOs into my `todos` stack and then recurse, continuing on to the next TODO.
 
