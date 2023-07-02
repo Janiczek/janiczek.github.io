@@ -6,7 +6,7 @@ It was not so long ago that I opened HackerNews and saw the title [The Best Refa
 
 Fast forward a few days. I was fighting an ugly piece of code in our Elm codebase - one I wrote, again, not that long ago. Yeah, not my proudest moment.
 
-[![Me reacting to my code.](/assets/images/2019-07-27-reaction.png)](/assets/images/2019-07-27-reaction.png)
+[![Me reacting to my code.](/assets/images/2019-07-27-defunctionalization-in-elm/reaction.png)](/assets/images/2019-07-27-defunctionalization-in-elm/reaction.png)
 
 As you can see, a lightbulb went off in my head. *This sounds like THAT thing!* There was nothing left to do than to try it.
 
@@ -203,7 +203,7 @@ crosstabBuilderConfig =
 
 And so, we had a happy ending (click to enlarge):
 
-[![Happy ending](/assets/images/2019-07-27-happy.png)](/assets/images/2019-07-27-happy.png)
+[![Happy ending](/assets/images/2019-07-27-defunctionalization-in-elm/happy.png)](/assets/images/2019-07-27-defunctionalization-in-elm/happy.png)
 
 ### Conclusion
 
@@ -213,7 +213,7 @@ To recap, we were making our lives unnecessarily hard by
 * sending functions that used them around in `Msg`s
 * and then had to create Rube Goldberg machines to `Cmd.map` the Msg types around correctly.
 
-![Rube Goldberg machine](/assets/images/2019-07-27-rube.jpg)
+![Rube Goldberg machine](/assets/images/2019-07-27-defunctionalization-in-elm/rube.jpg)
 
 To get out of this mess, we defunctionalized by
 
