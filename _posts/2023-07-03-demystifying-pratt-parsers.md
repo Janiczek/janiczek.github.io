@@ -4,7 +4,7 @@
 
 Here's the algorithm for `pratt(precLimit)`:
 
-[![Pratt parser algorithm](/assets/images/2023-07-02-demystifying-pratt-parsers/algorithm.png)](/assets/images/2023-07-02-demystifying-pratt-parsers/algorithm.png)
+[![Pratt parser algorithm](/assets/images/2023-07-03-demystifying-pratt-parsers/algorithm.png)](/assets/images/2023-07-03-demystifying-pratt-parsers/algorithm.png)
 
 [Here's a minimal commented Pratt parser example in Elm.](https://ellie-app.com/nfKBxpKJ5pva1)
 
@@ -29,7 +29,7 @@ The underlying problem is the frequent ambiguity in combinations of operators. F
 
 There are two options, each leading to a different value.
 
-![Ambiguity of multiple binary operators](/assets/images/2023-07-02-demystifying-pratt-parsers/ambiguity.png)
+![Ambiguity of multiple binary operators](/assets/images/2023-07-03-demystifying-pratt-parsers/ambiguity.png)
 
 There are [a few algorithms](https://en.wikipedia.org/wiki/Operator-precedence_parser) to solve this problem. Among them, my favorite is the [Pratt parser](https://en.wikipedia.org/wiki/Operator-precedence_parser#Pratt_parsing)---the most intuitive and declarative solution in my view.
 
@@ -67,7 +67,7 @@ So, that's my motivation for writing this article! Let's try and see how would a
 
 > Spoiler: [_here it is._](https://ellie-app.com/nfKBxpKJ5pva1)
 
-The language is pure, immutable, has no escape hatches, has no spooky action at a distance (eg. default arguments) and no obscure features (except for perhaps [sum types](https://en.wikipedia.org/wiki/Tagged_union), but even those are thankfully getting more and more common in other languages).
+The language is pure, immutable, has no escape hatches, has no spooky action at a distance (eg. default arguments or exceptions) and no obscure features (except for perhaps [sum types](https://en.wikipedia.org/wiki/Tagged_union), but even those are thankfully getting more and more common in other languages).
 
 Hence, if you can write it in Elm, you can likely write it in anything else.
 
@@ -91,7 +91,7 @@ That way the Pratt parser manages to consume all operations above its limit. A P
 
 ...Well, that was a mouthful. Here it is in the flowchart form again:
 
-[![Pratt parser algorithm](/assets/images/2023-07-02-demystifying-pratt-parsers/algorithm.png)](/assets/images/2023-07-02-demystifying-pratt-parsers/algorithm.png)
+[![Pratt parser algorithm](/assets/images/2023-07-03-demystifying-pratt-parsers/algorithm.png)](/assets/images/2023-07-03-demystifying-pratt-parsers/algorithm.png)
 
 I wouldn't blame you if it didn't click right away! To aid understanding, let's examine what the algorithm does from a few different perspectives: visually, then reading through an execution trace, and then finally the code itself.
 
@@ -99,11 +99,11 @@ I wouldn't blame you if it didn't click right away! To aid understanding, let's 
 
 Here's the expression we're interested in parsing:
 
-![Original expression](/assets/images/2023-07-02-demystifying-pratt-parsers/source.png)
+![Original expression](/assets/images/2023-07-03-demystifying-pratt-parsers/source.png)
 
 If we focus on _adding parentheses_ (instead of tree creation), we want to end up with something similar to the following:
 
-![Expression with added parentheses](/assets/images/2023-07-02-demystifying-pratt-parsers/parenthesized.png)
+![Expression with added parentheses](/assets/images/2023-07-03-demystifying-pratt-parsers/parenthesized.png)
 
 Let's assign the precedence values to the operators:
 
@@ -117,43 +117,43 @@ Let's assign the precedence values to the operators:
 
 Now let's put operators on separate lines according to their precedence:
 
-![Separated](/assets/images/2023-07-02-demystifying-pratt-parsers/separated.png)
+![Separated](/assets/images/2023-07-03-demystifying-pratt-parsers/separated.png)
 
 In order to get some visual intuition on this problem, we'll repeat a simple process on each level: given a region in a level above, we'll draw regions _between_ the operators on our current level:
 
-![Process we'll follow](/assets/images/2023-07-02-demystifying-pratt-parsers/process.png)
+![Process we'll follow](/assets/images/2023-07-03-demystifying-pratt-parsers/process.png)
 
 At the very top (`p=0`) we'll start with one large region:
 
-![p=0](/assets/images/2023-07-02-demystifying-pratt-parsers/p0.png)
+![p=0](/assets/images/2023-07-03-demystifying-pratt-parsers/p0.png)
 
 One level below (`p=1`), we split the region whenever we encounter an operator on our level---that is, `+` or `-`.
 
-![p=1](/assets/images/2023-07-02-demystifying-pratt-parsers/p1.png)
+![p=1](/assets/images/2023-07-03-demystifying-pratt-parsers/p1.png)
 
 Continuing on to `p=2`, we'll split each blue region when we find `*` or `/`.
 
 > To make the diagram less cluttered, we'll skip processing regions with single numbers, eg. here `1` and `2`.
 
-![p=2](/assets/images/2023-07-02-demystifying-pratt-parsers/p2.png)
+![p=2](/assets/images/2023-07-03-demystifying-pratt-parsers/p2.png)
 
 And then finally on level `p=3` we split the region containing the `^`.
 
-![p=3](/assets/images/2023-07-02-demystifying-pratt-parsers/p3.png)
+![p=3](/assets/images/2023-07-03-demystifying-pratt-parsers/p3.png)
 
 By now perhaps you already see what's happening: _each blue region represents a set of parentheses!_
 
 Let's clean the diagram up a little before we show that off: parentheses with no operators inside aren't very helpful (eg. `(3)` vs `3`), so we'll remove the blue regions that only hold single numbers:
 
-![Cleaned up](/assets/images/2023-07-02-demystifying-pratt-parsers/cleanedup.png)
+![Cleaned up](/assets/images/2023-07-03-demystifying-pratt-parsers/cleanedup.png)
 
 And now we can finally replace each beginning of a blue region with `(` and each end with `)`:
 
-![Converted](/assets/images/2023-07-02-demystifying-pratt-parsers/converted.png)
+![Converted](/assets/images/2023-07-03-demystifying-pratt-parsers/converted.png)
 
 Merging each level into the one above, we end up with the parenthesized expression we wanted:
 
-![Merged](/assets/images/2023-07-02-demystifying-pratt-parsers/parenthesized.png)
+![Merged](/assets/images/2023-07-03-demystifying-pratt-parsers/parenthesized.png)
 
 What we have been doing visually, corresponds to the Pratt parser algorithm: the blue regions on level `p=n` are calls to the `pratt(n)` parser. (Except for the leftmost numbers of each block, which are handled by the `prefix` parser.)
 
@@ -188,7 +188,7 @@ Step through the execution to see what's happening:
 Elm.Gallery.init({
     node: document.getElementById('gallery'),
     flags: {
-        filename: "/assets/images/2023-07-02-demystifying-pratt-parsers/t{N}.png",
+        filename: "/assets/images/2023-07-03-demystifying-pratt-parsers/t{N}.png",
         pattern: "{N}",
         min: 1,
         max: 65,
