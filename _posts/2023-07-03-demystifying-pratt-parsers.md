@@ -79,9 +79,11 @@ Each operator has _a precedence_ (a number) associated with it. Larger number me
 
 The Pratt parser holds _a precedence limit_. It can be thought of as: "You're only allowed to parse operators with precedence _higher_ than this number."
 
+> The precedence limit of the top-level expression is 0. Thus you could define your `expr(tokens)` parser as `pratt(0,tokens)`.
+
 The Pratt parser first parses a prefix expression (the _left_ part of the `Op(left, op, right)`), then starts a loop.
 
-In the loop it looks at the next token. If there is no token, or if it's not a known binary operator, or if it _is_ but its precedence is equal or lower than the limit, the parser ends and returns the left expression, alongside an information about what token to look at next (= whatever's immediately after the left expression).
+In the loop it looks at the next token. If there are no tokens left, or if it's not a known binary operator, or if it _is_ but its precedence is equal or lower than the limit, the parser ends and returns the left expression, alongside an information about what token to look at next (= whatever's immediately after the left expression).
 
 If the token is a known binary operator with _higher_ precedence than the limit held by the Pratt parser, the parser spawns another Pratt parser with a limit equal to the operator's precedence.
 
