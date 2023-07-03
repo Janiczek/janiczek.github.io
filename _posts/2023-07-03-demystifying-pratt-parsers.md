@@ -55,7 +55,7 @@ Of course, as an academic paper it has a different target audience, so let's not
 
 And I suspect that's the reason people write summaries. You don't need the 1973 motivation, you just need to _solve the operator precedence problem!_
 
-The best summary and explanation of Pratt parsers I know of (at least for the audience of an amateur programmer language designer in 2023) is written by [Bob Nystrom](https://twitter.com/munificentbob) in his blogpost [_"Pratt Parsers: Expression Parsing Made Easy"_](https://journal.stuffwithstuff.com/2011/03/19/pratt-parsers-expression-parsing-made-easy/). You should definitely read it! (Along with other Bob's writings, like [_Crafting Interpreters_](https://craftinginterpreters.com).)
+The best summary and explanation of Pratt parsers I know of (at least for the audience of an amateur programming language designer in 2023) is written by [Bob Nystrom](https://twitter.com/munificentbob) in his blogpost [_"Pratt Parsers: Expression Parsing Made Easy"_](https://journal.stuffwithstuff.com/2011/03/19/pratt-parsers-expression-parsing-made-easy/). You should definitely read it! (Along with other Bob's writings, like [_Crafting Interpreters_](https://craftinginterpreters.com).)
 
 The examples Bob gives are written in Java, and the [full example implementation](https://github.com/munificent/bantam) is split across multiple small classes.
 
@@ -396,23 +396,28 @@ Thankfully this is simple to solve: each operator will now have an `isRightAssoc
 When the `pratt` function gets that boolean, it will calculate the precedence this way:
 
 ```elm
-opIsRight : Bool
-opIsRight = isRight op
-
 opPrec : Int
 opPrec = precedence op
 
 finalPrec : Int
 finalPrec =
-    if opIsRight then
+    if isRightAssociative op then
         opPrec - 1
     else
         opPrec
 ```
 
-Then you use the `finalPrec` instead of `opPrec` everywhere it was used before.
+Then you need to use `opPrec` for the condition and `finalPrec` for the recursive call:
+
+```elm
+if opPrec > precLimit then
+    case pratt finalPrec tokensAfterOp of
+        ...
+```
 
 And that's it!
+
+Here's a runnable example with right associativity, parsing `1^2^3+4` into `(1^(2^3))+4`: [Ellie](https://ellie-app.com/ng5G7B8gLKsa1).
 
 ### More complex prefix expressions
 
@@ -474,7 +479,7 @@ Postfix expressions need the `prefix` expression parsed and the operator consume
 
 Postfix expressions are admittedly where I simplified my explanations too much. The Pratt parser really cares about two classes of operators: prefix, and anything else.
 
-In the above Elm code I've baked the assumption we'll only deal prefix and infix (binary), into the `pratt` function itself. In reality each operator token would have a parser asociated with it that deals with whatever's _after_ the operator, and the `pratt` function would call that.
+In the above Elm code I've baked the assumption we'll only deal prefix and infix (binary), into the `pratt` function itself. In reality each operator token would have a parser associated with it that deals with whatever's _after_ the operator, and the `pratt` function would call that.
 
 ```elm
 {-|
