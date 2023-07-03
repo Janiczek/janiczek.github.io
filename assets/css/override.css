@@ -3,6 +3,10 @@ hr {
   margin-bottom: 20px;
 }
 
+pre:hover>code.hljs {
+  font-variant-ligatures: none;
+}
+
 /* Post navigation links */
 .post_navi {
   display: flex;
