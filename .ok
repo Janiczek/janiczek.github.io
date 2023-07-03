@@ -1,3 +1,4 @@
 install: /opt/homebrew/opt/ruby/bin/bundle install
 serve:   /opt/homebrew/opt/ruby/bin/bundle exec jekyll serve --livereload
 build:   /opt/homebrew/opt/ruby/bin/bundle exec jekyll build
+elm:     for x in _scripts/*.elm; do BASE=$(basename "$x"); elm make "$x" --output "assets/js/$BASE.js"; done
