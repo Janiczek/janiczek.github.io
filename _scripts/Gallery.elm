@@ -97,7 +97,8 @@ view model =
                 |> List.map
                     (\image ->
                         Html.node "link"
-                            [ Html.Attributes.rel "prefetch"
+                            [ Html.Attributes.rel "preload"
+                            , Html.Attributes.attribute "as" "image"
                             , Html.Attributes.href image
                             ]
                             []

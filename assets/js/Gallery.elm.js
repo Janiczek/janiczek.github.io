@@ -5255,6 +5255,14 @@ var $author$project$Gallery$update = F2(
 					$elm$core$Platform$Cmd$none);
 		}
 	});
+var $elm$virtual_dom$VirtualDom$attribute = F2(
+	function (key, value) {
+		return A2(
+			_VirtualDom_attribute,
+			_VirtualDom_noOnOrFormAction(key),
+			_VirtualDom_noJavaScriptOrHtmlUri(value));
+	});
+var $elm$html$Html$Attributes$attribute = $elm$virtual_dom$VirtualDom$attribute;
 var $elm$core$Maybe$withDefault = F2(
 	function (_default, maybe) {
 		if (maybe.$ === 'Just') {
@@ -5479,7 +5487,8 @@ var $author$project$Gallery$view = function (model) {
 				'link',
 				_List_fromArray(
 					[
-						$elm$html$Html$Attributes$rel('prefetch'),
+						$elm$html$Html$Attributes$rel('preload'),
+						A2($elm$html$Html$Attributes$attribute, 'as', 'image'),
 						$elm$html$Html$Attributes$href(image)
 					]),
 				_List_Nil);
