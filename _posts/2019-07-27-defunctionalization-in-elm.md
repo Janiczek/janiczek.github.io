@@ -1,4 +1,4 @@
-## Defunctionalization in Elm
+# Defunctionalization in Elm
 
 It was not so long ago that I opened HackerNews and saw the title [The Best Refactoring You've Never Heard Of](http://www.pathsensitive.com/2019/07/the-best-refactoring-youve-never-heard.html). The refactoring in question was "defunctionalization", which *really* was a term I never heard of, even though some of the given examples looked familiar. The talk gave some formless blob in my brain's idea space a name ("reified it", hello Rich Hickey!), and all around it was a very cool talk. (Go watch it!)
 
@@ -150,7 +150,7 @@ fetchMany list =
 
 *Bleh.* All this was essentially `Msg` mapping to appease the type system, and it got very complicated very fast.
 
-### Getting out of this mess
+## Getting out of this mess
 
 At the time of writing, I didn't see a way out of this. I knew it was ugly but it was the best I could do. But now, with the knowledge of defunctionalization, could I try to apply that here?
 
@@ -205,7 +205,7 @@ And so, we had a happy ending (click to enlarge):
 
 [![Happy ending](/assets/images/2019-07-27-defunctionalization-in-elm/happy.png)](/assets/images/2019-07-27-defunctionalization-in-elm/happy.png)
 
-### Conclusion
+## Conclusion
 
 To recap, we were making our lives unnecessarily hard by
 

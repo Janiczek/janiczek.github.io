@@ -1,4 +1,4 @@
-## Union types antipattern in Elm
+# Union types antipattern in Elm
 
 So, lately I've been creating a microsite for my employer's conference. That seemed like a great place for sneaking some Elm in (no JS-only people to talk me out of it), and guess what - **it is!** I'm absolutely loving it so far.
 

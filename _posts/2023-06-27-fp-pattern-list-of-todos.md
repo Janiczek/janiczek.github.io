@@ -1,4 +1,4 @@
-## FP pattern - list of TODOs
+# FP pattern - list of TODOs
 
 I've solved a fair amount of [Advent of Code](https://adventofcode.com) puzzles in [Elm](https://elm-lang.org), and stumbled upon a pattern that quickly became my go-to for problems like pathfinding and (mathematical) optimization.
 
@@ -6,7 +6,7 @@ About a week or two ago, I've started working on a refactoring of our core data 
 
 This made me realize it might be more general and useful than I originally thought, and so I want to clarify my understanding of it by writing about it. I hope it will be helpful to you as well!
 
-### The pattern
+## The pattern
 
 In short, the pattern is to hold an explicit list of TODOs and then make a function handle them one by one, possibly stopping early and/or adding new TODOs to the list.
 
@@ -53,7 +53,7 @@ You can see it uses tail-call recursion (the inner function `go` returns either 
 - Do you need to hold some state on the side (eg. a set of visited items to not duplicate work)?
 - Can you take advantage of a priority queue in place of a List?
 
-### Processing all TODOs
+## Processing all TODOs
 
 Below is a full example, showing off the "process all items" variation. We'll be processing a custom tree type and listing all the `a` values along with paths to find them. (This is the example from my day-to-day work that prompted this blogpost!)
 
@@ -300,7 +300,7 @@ Instead of calling the function `n` times, we add `n` TODOs to the list. We're m
 
 > When we return `go ...` from inside the `go` function, the Elm compiler optimizes that to a JS `while` loop instead of a function call - this is called [Tail-call Optimization](https://en.wikipedia.org/wiki/Tail_call); TCO for short.
 
-### Searches (stop early)
+## Searches (stop early)
 
 There's an important "sub-genre" of problems that can be done with this general "list of TODOs" shape: searches.
 
@@ -308,7 +308,7 @@ These generally bail out early (as soon as they find a solution), but sometimes 
 
 This is how I first encountered the pattern - Advent of Code has a lot of maze-solving, [Dijkstra's algorithm](https://en.wikipedia.org/wiki/Dijkstra%27s_algorithm), flood-fill, optimization problems and so on. If examining one path gives me three more possible paths to take, I just add them as new TODOs into my `todos` stack and then recurse, continuing on to the next TODO.
 
-#### Example
+### Example
 
 Here's an example of a `find` function that works on the `Job`s and `List Step` paths from the previous example:
 
@@ -413,7 +413,7 @@ You can see similarities with `values`, in particular a lot of the same path-bui
 
 Also, the `go` function only has the list of TODOs as an argument; we don't need to accumulate any state on the side, as the output can be derived from the TODO alone.
 
-#### Optimization detour: pruning
+### Optimization detour: pruning
 
 The above was searching for _any_ value satisfying a predicate. There's _another_ subclass of search problems, and that's searching for _best_ value satisfying a predicate (finding a shortest path through a graph etc.).
 
@@ -431,7 +431,7 @@ case todos of
 
 but you can also `List.filter` the TODO list whenever you find a new maximum. (Tradeoffs!)
 
-#### Optimization detour: priority queues
+### Optimization detour: priority queues
 
 In these search problems depth-first versus breadth-first _does_ make a difference (particularly when you're searching for _any_ solution and not the best one, DFS is much better than BFS), and there's one more thing I want to briefly mention again: [priority queues](https://en.wikipedia.org/wiki/Priority_queue).
 
@@ -458,7 +458,7 @@ go todos =
       -- process it
 ```
 
-### Summary
+## Summary
 
 That's mostly all I wanted to say about the pattern! I hope the two examples gave you an idea of where it might be used.
 
@@ -483,6 +483,6 @@ Nonetheless I've found it helpful to give the pattern a name, to make it _a thin
 
 So, go forth and <del>multiply</del> make some TODOs!
 
-##### Acknowledgements
+#### Acknowledgements
 
 Thanks to Ed Kelly for proofreading and suggesting improvements.

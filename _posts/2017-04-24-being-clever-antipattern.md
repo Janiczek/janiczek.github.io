@@ -1,4 +1,4 @@
-## "Being clever" antipattern in Elm
+# "Being clever" antipattern in Elm
 
 *Disclaimer: I write this article based on my experience and "feels" - and thus the points might not be right and are open to discussion! In the post I say things like "Elm values X and Y" - and might be wrong. I believe I'm not though :)*
 
