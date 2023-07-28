@@ -36,6 +36,26 @@ We could do this in the interpreter. That would be a lot of repeated work though
 
 Skipping the parser for the moment, we could do this in the lexer, but that would breach separation of concerns: the lexer would have to know about AST nodes, how appending strings works etc.
 
+> ⚠️ **EDIT 2023-07-28:** Hayleigh Thompson made me aware of some lexer-only approaches:
+> 
+> Denis Defreyne solves this with [modal lexers](https://denisdefreyne.com/articles/2022-modal-lexer/#the-string-interpolation-lexer-mode): instead of a `StringToken "one plus two is ${1+2}."` you'd have these:
+> ```elm
+> [ StringStart
+> , StringPartLit "one plus two is "
+> , StringInterpStart
+> , Number 1
+> , Plus
+> , Number 2
+> , StringInterpEnd
+> , StringPartLit "."
+> , StringEnd
+> ]
+> ```
+>
+> More on modal lexers also on the [Oil Shell blog](https://www.oilshell.org/blog/2017/12/17.html).
+> 
+> So, solving this in a lexer _does_ make a lot of sense! (I'll keep the rest of the article focused on the parser approach though, having already written it 😅.)
+
 It feels like the parser (or some compiler stage right after parsing) is the right place to do things in: we know about details of AST at this point, and it's a preprocessing job to be done once, before any runtime looping.
 
 Assuming our lexer has already returned a token like:
