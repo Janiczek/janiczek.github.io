@@ -2,7 +2,7 @@
 
 First of all, this blogpost is kinda long. Let me prove to you reading it _will_ actually have some payoff:
 
-[![See, I wrote something!](/assets/images/2024-07-24-taking-my-diabetes-treatment-into-my-own-hands/05-original-and-best.png)](/assets/images/2024-07-24-taking-my-diabetes-treatment-into-my-own-hands/05-original-and-best.png)
+[![See, I wrote something!](/assets/images/2024-07-23-taking-my-diabetes-treatment-into-my-own-hands/04-original-and-best.png)](/assets/images/2024-07-23-taking-my-diabetes-treatment-into-my-own-hands/04-original-and-best.png)
 
 OK, now that you'll stay, let's start from the begininng...
 
@@ -14,7 +14,7 @@ This is a finnicky process, because you need to balance your glucose in the righ
 
 A commonly used metaphor for this is flying a plane. There are games illustrating the process as well: click blue button, bird flies down, click orange button, bird flies up. Too high bad, too low bad, just right good.
 
-[![A game showing the process](/assets/images/2024-07-24-taking-my-diabetes-treatment-into-my-own-hands/icarus.png)](/assets/images/2024-07-24-taking-my-diabetes-treatment-into-my-own-hands/icarus.png)
+[![A game showing the process](/assets/images/2024-07-23-taking-my-diabetes-treatment-into-my-own-hands/icarus.png)](/assets/images/2024-07-23-taking-my-diabetes-treatment-into-my-own-hands/icarus.png)
 
 The issues with manually managing this process you've inherited from your douchebag pancreas are manifold:
 
@@ -39,8 +39,8 @@ The issues with manually managing this process you've inherited from your douche
 I hope this incomplete list gives you an idea of how wonky the process of trying to make your blood glucose stay in the right levels is.
 
 <div style="width: 50%; margin: 0 auto">
-<a href="/assets/images/2024-07-24-taking-my-diabetes-treatment-into-my-own-hands/phone.jpeg">
-<img src="/assets/images/2024-07-24-taking-my-diabetes-treatment-into-my-own-hands/phone.jpeg" 
+<a href="/assets/images/2024-07-23-taking-my-diabetes-treatment-into-my-own-hands/phone.jpeg">
+<img src="/assets/images/2024-07-23-taking-my-diabetes-treatment-into-my-own-hands/phone.jpeg" 
  alt="My 7-day average">
 </a>
 </div>
@@ -92,7 +92,7 @@ There's not too much to pick from.
 
 One of the links led me to [diabetes.zcu.cz](https://diabetes.zcu.cz/) though, and in particular their [SmartCGMS](https://diabetes.zcu.cz/smartcgms/) app (open-source too!). From the screenshots it seemed kinda relevant, or at least similar to what I had in mind for my dream app.
 
-[![SmartCGMS](/assets/images/2024-07-24-taking-my-diabetes-treatment-into-my-own-hands/smartcgms.png)](/assets/images/2024-07-24-taking-my-diabetes-treatment-into-my-own-hands/smartcgms.png)
+[![SmartCGMS](/assets/images/2024-07-23-taking-my-diabetes-treatment-into-my-own-hands/smartcgms.png)](/assets/images/2024-07-23-taking-my-diabetes-treatment-into-my-own-hands/smartcgms.png)
 
 So I sent an email to the authors. Found one maintainer on GitHub and wrote them an email detailing my woes and the app I'd love to write, and whether they could point me to some existing software or good papers on modelling multiple-dose-injection treatment (as opposed to a pump / artificial pancreas).
 
@@ -169,11 +169,11 @@ myPrediction =
 
 Never have I copied the resulting CSV into Google Sheets so fast. Tada:
 
-[![I'm the artist now.](/assets/images/2024-07-24-taking-my-diabetes-treatment-into-my-own-hands/00-accidental-art.png)](/assets/images/2024-07-24-taking-my-diabetes-treatment-into-my-own-hands/00-accidental-art.png)
+[![I'm the artist now.](/assets/images/2024-07-23-taking-my-diabetes-treatment-into-my-own-hands/00-accidental-art.png)](/assets/images/2024-07-23-taking-my-diabetes-treatment-into-my-own-hands/00-accidental-art.png)
 
 Oh, wait, that's not it. Cool piece of accidental art though! Now let me use the correct column for the X axis.
 
-[![Google Sheets](/assets/images/2024-07-24-taking-my-diabetes-treatment-into-my-own-hands/01-google-sheets.png)](/assets/images/2024-07-24-taking-my-diabetes-treatment-into-my-own-hands/01-google-sheets.png)
+[![Google Sheets](/assets/images/2024-07-23-taking-my-diabetes-treatment-into-my-own-hands/01-google-sheets.png)](/assets/images/2024-07-23-taking-my-diabetes-treatment-into-my-own-hands/01-google-sheets.png)
 
 Well hot damn. The graph actually makes sense!
 
@@ -189,11 +189,11 @@ Next I made a Windows Forms application with an OxyPlot chart so that I don't ne
 
 This took me a while to figure out (I'm not a C# guy; honestly I've thought about rewriting this into F# instead the moment I had to start learning about event handlers and delegates), but I succeeded:
 
-[![Initial graph](/assets/images/2024-07-24-taking-my-diabetes-treatment-into-my-own-hands/02-initial-graph.png)](/assets/images/2024-07-24-taking-my-diabetes-treatment-into-my-own-hands/02-initial-graph.png)
+[![Initial graph](/assets/images/2024-07-23-taking-my-diabetes-treatment-into-my-own-hands/02-initial-graph.png)](/assets/images/2024-07-23-taking-my-diabetes-treatment-into-my-own-hands/02-initial-graph.png)
 
 There's one little issue with seeing just the first day of the simulation though, and that's the fact that I inject my basal (long-acting) insulin at 22:00. So for the majority of the first day the glucose will just be higher because I haven't injected the long-acting insulin yet. So let's simulate more days just to see what happens.
 
-[![Ranges](/assets/images/2024-07-24-taking-my-diabetes-treatment-into-my-own-hands/03-ranges.png)](/assets/images/2024-07-24-taking-my-diabetes-treatment-into-my-own-hands/03-ranges.png)
+[![Ranges](/assets/images/2024-07-23-taking-my-diabetes-treatment-into-my-own-hands/03-ranges.png)](/assets/images/2024-07-23-taking-my-diabetes-treatment-into-my-own-hands/03-ranges.png)
 
 Oh wow, it gets periodic by day 3! Cool!
 
@@ -315,7 +315,7 @@ _Amazing what you can do with a bit of mutation. Yeah I'll go return my Elm badg
 
 So, with this fitness function created, I can now run the genetic algorithm. Let's add a button and some more info to the UI, and start it off!
 
-[![Intakes on the side, and a button](/assets/images/2024-07-24-taking-my-diabetes-treatment-into-my-own-hands/04-original-and-best.png)](/assets/images/2024-07-24-taking-my-diabetes-treatment-into-my-own-hands/04-original-and-best.png)
+[![Intakes on the side, and a button](/assets/images/2024-07-23-taking-my-diabetes-treatment-into-my-own-hands/04-original-and-best.png)](/assets/images/2024-07-23-taking-my-diabetes-treatment-into-my-own-hands/04-original-and-best.png)
 
 _WELL HOT DAMN._ It has optimized the insulin intakes and the patient (again, sadly not _me_) is now stable inside the 4-10 mmol/l range.
 
@@ -339,7 +339,7 @@ What's that? I didn't mention Markov Chains _once_ in the article?
 
 Oh yeah, well, I experimented with a bunch of stuff. To end off the blogpost, here's a stupid random walk arriving at a value iteratively. (Change each intake by a random value `-2..+2`, and if the fitness of that tweaked input is better, keep the change, otherwise rollback.)
 
-<video src="/assets/images/2024-07-24-taking-my-diabetes-treatment-into-my-own-hands/recording.mp4"
+<video src="/assets/images/2024-07-23-taking-my-diabetes-treatment-into-my-own-hands/recording.mp4"
        style="width: 100%"
        controls>
 </video>
