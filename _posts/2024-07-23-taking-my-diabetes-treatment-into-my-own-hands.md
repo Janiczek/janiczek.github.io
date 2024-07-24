@@ -4,7 +4,7 @@ First of all, this blogpost is kinda long. Let me prove to you reading it _will_
 
 [![See, I wrote something!](/assets/images/2024-07-23-taking-my-diabetes-treatment-into-my-own-hands/04-original-and-best.png)](/assets/images/2024-07-23-taking-my-diabetes-treatment-into-my-own-hands/04-original-and-best.png)
 
-OK, now that you'll stay, let's start from the begininng...
+OK, now that you'll stay, let's start from the beginning...
 
 ----
 
