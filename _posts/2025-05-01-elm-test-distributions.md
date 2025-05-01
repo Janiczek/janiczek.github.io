@@ -119,7 +119,7 @@ Test.expectDistribution
 
 ----
 
-With all of the secrets out, let me now properly introduce you to [`Test.Distribution`](https://package.elm-lang.org/packages/elm-explorations/test/2.2.0/Test-Distribution). It's a relatively new addition to the Elm test library API (added in [v2.0.0](https://github.com/elm-explorations/test/blob/master/CHANGELOG.md)) which lets you measure or alternatively _enforce_ how often each interesting case needs to happen.
+With all of the secrets out, let me now properly introduce you to [`Test.Distribution`](https://package.elm-lang.org/packages/elm-explorations/test/2.2.0/Test-Distribution). It's a relatively new addition to the Elm test library API (added in [v2.0.0](https://github.com/elm-explorations/test/blob/master/CHANGELOG.md), has been 3 years already, wow) which lets you measure or alternatively _enforce_ how often each interesting case needs to happen.
 
 This was ported over from Haskell QuickCheck (of course), where this is done with functions like [`label`](https://hackage.haskell.org/package/QuickCheck-2.15.0.1/docs/Test-QuickCheck.html#v:label) and [`checkCoverage`](https://hackage.haskell.org/package/QuickCheck-2.15.0.1/docs/Test-QuickCheck.html#v:checkCoverage), and there's an amazing talk ["Building on developers' intuitions to create effective property-based tests"](https://www.youtube.com/watch?v=NcJOiQlzlXQ) by John Hughes (of _course_) that explains the idea further.
 
