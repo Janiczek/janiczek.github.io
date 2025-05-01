@@ -142,3 +142,8 @@ pre:hover>code.hljs {
   font-weight: 700;
   src: url('/assets/fonts/source-serif-4-v7-latin-700italic.woff2') format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
 }
+
+.markdown-body p, .markdown-body blockquote, .markdown-body ul, .markdown-body ol, .markdown-body dl, .markdown-body table, .markdown-body pre {
+    /* margin-bottom: 16px; - ORIGINAL */
+    margin-bottom: 1lh; /* https://webkit.org/blog/16831/line-height-units/ */
+}
