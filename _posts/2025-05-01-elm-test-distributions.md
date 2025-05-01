@@ -8,7 +8,7 @@ Recently I was discussing [a TigerBeetle article on swarm testing](https://tiger
 
 He asked:
 
-> How does one detect which situations are or aren't covered in practice by PB tests? Like, when would you say "the distribution we have doesn't cover this case"?
+> How does one detect which situations are or aren't covered in practice by property-based tests? Like, when would you say "the distribution we have doesn't cover this case"?
 
 How do you indeed! You could use [`Fuzz.examples`](https://package.elm-lang.org/packages/elm-explorations/test/2.2.0/Fuzz#examples) to visually check whether the generated values make sense to you:
 
