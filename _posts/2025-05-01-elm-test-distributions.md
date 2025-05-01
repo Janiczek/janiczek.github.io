@@ -260,4 +260,4 @@ You can see it generated 2146 values to be sure of the result, instead of the sp
 
 That about covers it! This post mostly wants to show that this _can be done_ in the Elm PBT testing world; if you want to dive deeper I heartily recommend the mentioned [YouTube talk](https://www.youtube.com/watch?v=NcJOiQlzlXQ) by John Hughes.
 
-TL;DR: with [`Test.Distribution`](https://package.elm-lang.org/packages/elm-explorations/test/2.2.0/Test-Distribution) you can measure and enforce how often do your test generate categories of values of your choosing.
+TL;DR: with [`Test.Distribution`](https://package.elm-lang.org/packages/elm-explorations/test/2.2.0/Test-Distribution) you can measure and enforce how often do your tests generate categories of values of your choosing.
