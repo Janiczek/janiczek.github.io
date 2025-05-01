@@ -129,17 +129,17 @@ Before I get to the actual [`Test.Distribution`](https://package.elm-lang.org/pa
 
 ```elm
 Fuzz.labelExamples 100
-    [ ( "Lower boundary (1)", \n -> n == 1 )
-    , ( "Upper boundary (20)", \n -> n == 20 )
+    [ ( "Lower boundary (1)",    \n -> n == 1 )
+    , ( "Upper boundary (20)",   \n -> n == 20 )
     , ( "In the middle (2..19)", \n -> n > 1 && n < 20 )
-    , ( "Outside boundaries??", \n -> n < 1 || n > 20 )
+    , ( "Outside boundaries??",  \n -> n < 1 || n > 20 )
     ]
     (Fuzz.intRange 1 20)
 -->
-[ ( [ "Lower boundary (1)" ], Just 1 )
-, ( [ "Upper boundary (20)" ], Just 20 )
+[ ( [ "Lower boundary (1)" ],    Just 1 )
+, ( [ "Upper boundary (20)" ],   Just 20 )
 , ( [ "In the middle (2..19)" ], Just 3 )
-, ( [ "Outside boundaries??" ], Nothing )
+, ( [ "Outside boundaries??" ],  Nothing )
 ]
 ```
 
@@ -152,8 +152,8 @@ Fuzz.labelExamples 100
     ]
     (Fuzz.intRange 1 20)
 -->
-[ ( [ "fizz" ], Just 3 )
-, ( [ "buzz" ], Just 10 )
+[ ( [ "fizz" ],       Just 3 )
+, ( [ "buzz" ],       Just 10 )
 , ( [ "fizz, buzz" ], Just 15 )
 ]
 ```
@@ -179,7 +179,7 @@ Test.fuzzWith
             [ ( "fizz", \n -> (n |> modBy 3) == 0 )
             , ( "buzz", \n -> (n |> modBy 5) == 0 )
             , ( "even", \n -> (n |> modBy 2) == 0 )
-            , ( "odd", \n -> (n |> modBy 2) == 1 )
+            , ( "odd",  \n -> (n |> modBy 2) == 1 )
             ]
     }
     (Fuzz.intRange 1 20)
@@ -225,11 +225,11 @@ Test.fuzzWith
     { runs = 100
     , distribution =
         Test.expectDistribution
-            [ ( Test.Distribution.atLeast 4, "low", \n -> n == 1 )
-            , ( Test.Distribution.atLeast 4, "high", \n -> n == 20 )
-            , ( Test.Distribution.atLeast 80, "in between", \n -> n > 1 && n < 20 )
-            , ( Test.Distribution.zero, "outside", \n -> n < 1 || n > 20 )
-            , ( Test.Distribution.moreThanZero, "one", \n -> n == 1 )
+            [ ( Test.Distribution.atLeast 4,    "low",        \n -> n == 1 )
+            , ( Test.Distribution.atLeast 4,    "high",       \n -> n == 20 )
+            , ( Test.Distribution.atLeast 80,   "in between", \n -> n > 1 && n < 20 )
+            , ( Test.Distribution.zero,         "outside",    \n -> n < 1 || n > 20 )
+            , ( Test.Distribution.moreThanZero, "one",        \n -> n == 1 )
             ]
     }
     (Fuzz.intRange 1 20)
@@ -259,3 +259,5 @@ You can see it generated 2146 values to be sure of the result, instead of the sp
 ----
 
 That about covers it! This post mostly wants to show that this _can be done_ in the Elm PBT testing world; if you want to dive deeper I heartily recommend the mentioned [YouTube talk](https://www.youtube.com/watch?v=NcJOiQlzlXQ) by John Hughes.
+
+TL;DR: with [`Test.Distribution`](https://package.elm-lang.org/packages/elm-explorations/test/2.2.0/Test-Distribution) you can measure and enforce how often do your test generate categories of values of your choosing.
