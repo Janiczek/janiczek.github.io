@@ -94,7 +94,7 @@ should be post-processed to something equivalent to:
 
 The above is simple to understand, and as we'll see shortly, it's just a bit fiddly with recursion and nesting.
 
-For simplicity I'm choosing a solution that will chomp things one character at a time. There are other variants (string-splitting the contents on the `${` delimiter, [r̸̘̔e̴̩͊g̸̯̾ȇ̴̼͇̗̈́̽x̵̺͑̆͑̈́̑͂̔̊̚è̸̺s̴̘̃](https://stackoverflow.com/a/1732454) etc.); in a production-ready compiler you'll likely want to splurge on a full-fledged parser!
+For simplicity I'm choosing a solution that will chomp things one character at a time. There are other variants (string-splitting the contents on the `${` delimiter, [<span class="zalgo">r̸̘̔e̴̩͊g̸̯̾ȇ̴̼͇̗̈́̽x̵̺͑̆͑̈́̑͂̔̊̚è̸̺s̴̘̃</span>](https://stackoverflow.com/a/1732454) etc.); in a production-ready compiler you'll likely want to splurge on a full-fledged parser!
 
 There are also many edge cases to handle:
 * unbalanced delimiters: `"Hello ${name"`
