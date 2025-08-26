@@ -14,7 +14,7 @@ I tried futzing around with "Cartridge Policy" (which explicitly said it would a
 
 In the end I opted to flashing an older firmware. Thanks to [a Reddit post](https://www.reddit.com/r/printers/comments/19aqimz/comment/lvfhh6a/) I was able to find an official HP download URL (instead of some shady 3rd party website):
 
-**http://ftp.hp.com/pub/softlib/software13/fw-recover/M478-M479_MA/HP_Color_LaserJet_Pro_MFP_M478-M479_series_FW_002_1916A.ful2**
+**[http://ftp.hp.com/pub/softlib/software13/fw-recover/M478-M479_MA/HP_Color_LaserJet_Pro_MFP_M478-M479_series_FW_002_1916A.ful2](http://ftp.hp.com/pub/softlib/software13/fw-recover/M478-M479_MA/HP_Color_LaserJet_Pro_MFP_M478-M479_series_FW_002_1916A.ful2)**
 
 Then I tried putting that on an USB stick and flashing the printer that way. Didn't work, the back USB port resulted in the printer trying to format the flash drive, and the front USB port tried to find something to print on the drive.
 
