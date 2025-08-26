@@ -10,9 +10,11 @@ It started giving me the "Non-HP Chip Detected" error and refused to print anyth
 
 All the usual tips that said I should turn the printer off, pull the plug, wait a minute and then turn it on, or that I should press the power-off button for 30s or more -- none of that worked. The error was still there.
 
-I tried futzing around with "Cartridge Policy" (which explicitly said it would allow non-HP cartridges) and that didn't work either.
+I tried futzing around with "Cartridge Policy" in the printer web interface (which explicitly said it would allow non-HP cartridges), and that didn't work either.
 
-In the end I opted to flashing an older firmware. Thanks to [a Reddit post](https://www.reddit.com/r/printers/comments/19aqimz/comment/lvfhh6a/) I was able to find an official HP download URL (instead of some shady 3rd party website):
+In the end I opted to flashing an older firmware. I turned off automatic updates via the printer touchscreen UI, and started searching for the older firmware binaries.
+
+Thanks to [a Reddit post](https://www.reddit.com/r/printers/comments/19aqimz/comment/lvfhh6a/) I was able to find an official HP download URL (instead of some shady 3rd party website):
 
 **[http://ftp.hp.com/pub/softlib/software13/fw-recover/M478-M479_MA/HP_Color_LaserJet_Pro_MFP_M478-M479_series_FW_002_1916A.ful2](http://ftp.hp.com/pub/softlib/software13/fw-recover/M478-M479_MA/HP_Color_LaserJet_Pro_MFP_M478-M479_series_FW_002_1916A.ful2)**
 
