@@ -124,11 +124,11 @@ functions](https://www.youtube.com/watch?v=CnIlm6-XK6U).
 The `==` operator below is to represent the correct way to compare two queues
 for equality (see note above).
 
-Here's the types of the variables will mean:
+Here's the types of the variables introduced in the for-alls:
 ```elm
 x : a
 xs : List a
-q : Queue a
+q : Queue a -- created via fromList
 ```
 
 The invariants we will be checking:
