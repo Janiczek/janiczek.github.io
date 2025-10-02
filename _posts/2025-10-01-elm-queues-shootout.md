@@ -355,7 +355,7 @@ non-empty cases, taking a different path through the code. Sometimes
 surprisingly for the worse!
 
 When a library implements `length`, it's usually way better (in most cases,
-`O(1)`) than anything you can implement yourself from `toList` or `deque` (where
+`O(1)`) than anything you can implement yourself from `toList` or `dequeue` (where
 you're guaranteed `O(N)`).
 
 And yet again, it's hard to say how much will a hypothetical webapp feel any of
