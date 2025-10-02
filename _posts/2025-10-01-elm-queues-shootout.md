@@ -150,7 +150,7 @@ The invariants we will be checking:
 * isEmpty / singleton
   * `∀x: isEmpty (singleton x) == False`
 * isEmpty / fromList
-  * `∀xs: isEmpty (fromList x) == List.isEmpty x`
+  * `∀xs: isEmpty (fromList xs) == List.isEmpty xs`
 * isEmpty / toList
   * `∀q: isEmpty q == List.isEmpty (toList x)`
 * isEmpty / length
@@ -184,7 +184,7 @@ All tested packages behaved identically and as-expected, with the exception of
 `owanturist/elm-queue`.
 
 This library behaves differently wrt. `fromList` and `toList`: compared to other
-libraries, they act as if they reversed their list argument:
+libraries, they act as if they reversed the list in question:
 
 ```elm
 dequeue (fromList [1,2,3])
@@ -202,8 +202,7 @@ toList (enqueue 999 (singleton 1))
 [1,999]
 ```
 
-Taken together, the two bugs cancel out, which makes them sneakier in
-retrospect.
+Taken together, the two bugs cancel out (ie. the roundabout test "fromList / toList" doesn't catch them), which makes them sneakier in retrospect.
 
 This was submitted to the package repository as [issue
 #5](https://github.com/owanturist/elm-queue/issues/5).
@@ -270,9 +269,9 @@ Each of the `CommonApi.elm` files contains an implementation of the, well, commo
 
 The implementations (and tests) for each tested package can be found in the
 accompanying repository:
-[Janiczek/elm-queues-comparison](https://github.com/Janiczek/elm-queues-comparison).
+[Janiczek/elm-queues-shootout](https://github.com/Janiczek/elm-queues-shootout).
 
-I then run the benchmarks via `elm-bench` in the "version" mode: that allows me
+I then run the benchmarks via [elm-bench](https://martinjaniczek.gumroad.com/l/elm-bench) in the "version" mode: this allows me
 to have a separate project for each library. I can't use them all in the same
 Elm project because of module name collisions: many of the packages export a
 module named `Queue`, and there can only be one.
@@ -285,10 +284,10 @@ Example usage:
 
 ```bash
 bench_queues CommonApi.dequeue "(CommonApi.fromList (List.range 1 5))"
-bench_queues CommonApi.enqueue 1 "CommonApi.empty"
+bench_queues CommonApi.enqueue 1 CommonApi.empty
 ```
 
-The `elm-bench` tool ensures the arguments to the function are precomputed (by
+[elm-bench](https://martinjaniczek.gumroad.com/l/elm-bench) ensures the arguments to the function are precomputed (by
 putting them in their own top-level declarations, which are then computed during
 program initialization and before the benchmark starts). This means we _aren't_
 measuring the runtime of computing the arguments.
@@ -297,7 +296,7 @@ The `--json` flag gives output in a JSON form, from which the measurement can
 be plucked via `jq ".[].nsPerRun"`. All measurements are in nanoseconds per run
 (that is, per the measured function call).
 
-"Small queue/list" means `List.range 1 5` and "Large queue/list" means
+Finally, "small queue/list" means `List.range 1 5` and "Large queue/list" means
 `List.range 1 500`.
 
 ### Measurements
@@ -306,7 +305,7 @@ I need to preface this with: this is all on a _nanosecond_ scale. Don't be
 wooed by the absolute differences here - does your webapp really care about
 0.2ns vs 3ns? Which operations will it do often? The `O(1)` vs `O(N)` time
 complexities will probably be more instructive, though again you have to think
-about the realistic sizes of your queues. Are they ever going to hold more than
+about the realistic sizes of your queues. Are they going to hold more than
 a few hundred items?
 
 [The table with the measurements is on
@@ -381,7 +380,7 @@ You have to count the elements _somewhere_: on the way in or on the way out.
 
 ### Categorization
 
-It seems that there are three categories you can choose from:
+It seems that there are two categories you can choose from:
 * Deques with somewhat rich List-like API, `O(1) length` and `O(N) fromList`
   * Both `folkertdev/elm-deque` and `robinheghan/elm-deque` fit the bill.
   * Robin's library seems faster at `fromList` and slower at `toList`.
