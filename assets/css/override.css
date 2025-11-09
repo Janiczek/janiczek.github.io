@@ -157,3 +157,63 @@ pre:hover>code.hljs {
   margin: 0 calc(50% - 50vw);
   width: 100dvw;
 }
+
+/* Responsive styles for scheduler visualizers */
+@media (max-width: 768px) {
+  /* Stack layout vertically on mobile */
+  .scheduler-layout {
+    flex-direction: column !important;
+  }
+
+  /* Make columns full width on mobile */
+  .scheduler-code-column,
+  .scheduler-program-column,
+  .scheduler-left-column,
+  .scheduler-processes-column,
+  .scheduler-traces-column {
+    width: 100% !important;
+    min-width: 0 !important;
+    flex-shrink: 1 !important;
+  }
+
+  /* Make left column (example + ready queue) display in a row on mobile */
+  .scheduler-left-column {
+    flex-direction: row !important;
+    gap: 10px !important;
+  }
+
+  /* Make code example and ready queue containers flexible on mobile */
+  .code-example-container,
+  .ready-queue-container {
+    flex: 1 1 0 !important;
+    min-width: 0 !important;
+  }
+
+  /* Adjust traces column width on mobile */
+  .scheduler-traces-column {
+    min-width: 0 !important;
+  }
+
+  /* Adjust demo layout container padding on mobile */
+  .demo-layout-container {
+    padding: 10px !important;
+    height: auto !important;
+    min-height: 100vh !important;
+  }
+
+  /* Make buttons smaller on mobile */
+  .demo-button {
+    padding: 4px 8px !important;
+    font-size: 12px !important;
+  }
+
+  /* Ensure processes container is scrollable on mobile */
+  .processes-container {
+    overflow-x: auto;
+  }
+
+  /* Adjust table width on mobile */
+  .processes-container table {
+    min-width: 100%;
+  }
+}

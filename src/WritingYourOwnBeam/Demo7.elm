@@ -110,7 +110,8 @@ view model =
         additionalControls : List (Html Msg)
         additionalControls =
             [ Html.button
-                [ Html.Events.onClick FixBug
+                [ Html.Attributes.class "demo-button"
+                , Html.Events.onClick FixBug
                 , Html.Attributes.style "padding" "8px 16px"
                 , Html.Attributes.style "font-family" "'JetBrains Mono', monospace"
                 ]

@@ -202,7 +202,7 @@ stepToString step =
 
 viewProcesses : Scheduler -> Html msg
 viewProcesses scheduler =
-    div [ style "display" "flex", style "flex-direction" "column", style "gap" "10px" ]
+    div [ class "processes-container", style "display" "flex", style "flex-direction" "column", style "gap" "10px" ]
         [ h3 [ style "margin-bottom" "0" ] [ text "Processes" ]
         , div [ style "min-height" "calc(38px * 3)" ]
             [ table
@@ -230,7 +230,7 @@ viewProcesses scheduler =
 
 viewProcessesWithMailbox : Scheduler -> Html msg
 viewProcessesWithMailbox scheduler =
-    div [ style "display" "flex", style "flex-direction" "column", style "gap" "10px" ]
+    div [ class "processes-container", style "display" "flex", style "flex-direction" "column", style "gap" "10px" ]
         [ h3 [ style "margin-bottom" "0" ] [ text "Processes" ]
         , div [ style "min-height" "calc(38px * 3)" ]
             [ table
@@ -438,7 +438,7 @@ viewReadyQueue readyQueue =
         queueItems =
             Queue.toList readyQueue |> List.map String.fromInt
     in
-    div [ style "display" "flex", style "flex-direction" "column", style "gap" "10px", style "width" "fit-content" ]
+    div [ class "ready-queue-container", style "display" "flex", style "flex-direction" "column", style "gap" "10px", style "width" "fit-content" ]
         [ h3 [ style "margin-bottom" "0" ] [ text "Ready Queue" ]
         , div [ style "background" "#f5f5f5", style "padding" "10px", style "border-radius" "4px", style "min-height" "4.5em" ]
             [ ul
@@ -473,23 +473,27 @@ viewScheduler mode scheduler code =
     case mode of
         SimpleProgram ->
             div
-                [ style "display" "flex"
+                [ class "scheduler-layout"
+                , style "display" "flex"
                 , style "gap" "20px"
                 , style "align-items" "stretch"
                 , style "flex" "1"
                 , style "min-height" "0"
                 ]
                 [ div
-                    [ style "flex-shrink" "0"
+                    [ class "scheduler-code-column"
+                    , style "flex-shrink" "0"
                     ]
                     [ viewCodeExample code ]
                 , div
-                    [ style "flex" "1"
+                    [ class "scheduler-program-column"
+                    , style "flex" "1"
                     , style "min-width" "0"
                     ]
                     [ viewProgram scheduler ]
                 , div
-                    [ style "width" "25vw"
+                    [ class "scheduler-traces-column"
+                    , style "width" "25vw"
                     , style "min-width" "35ch"
                     , style "flex-shrink" "0"
                     , style "display" "flex"
@@ -500,14 +504,16 @@ viewScheduler mode scheduler code =
 
         ProcessTable ->
             div
-                [ style "display" "flex"
+                [ class "scheduler-layout"
+                , style "display" "flex"
                 , style "gap" "20px"
                 , style "align-items" "stretch"
                 , style "flex" "1"
                 , style "min-height" "0"
                 ]
                 [ div
-                    [ style "display" "flex"
+                    [ class "scheduler-left-column"
+                    , style "display" "flex"
                     , style "flex-direction" "column"
                     , style "gap" "20px"
                     , style "flex-shrink" "0"
@@ -516,12 +522,14 @@ viewScheduler mode scheduler code =
                     , viewReadyQueue scheduler.readyQueue
                     ]
                 , div
-                    [ style "flex-grow" "1"
+                    [ class "scheduler-processes-column"
+                    , style "flex-grow" "1"
                     , style "min-width" "0"
                     ]
                     [ viewProcesses scheduler ]
                 , div
-                    [ style "width" "25vw"
+                    [ class "scheduler-traces-column"
+                    , style "width" "25vw"
                     , style "min-width" "35ch"
                     , style "flex-shrink" "0"
                     , style "display" "flex"
@@ -532,14 +540,16 @@ viewScheduler mode scheduler code =
 
         ProcessTableWithMailbox ->
             div
-                [ style "display" "flex"
+                [ class "scheduler-layout"
+                , style "display" "flex"
                 , style "gap" "20px"
                 , style "align-items" "stretch"
                 , style "flex" "1"
                 , style "min-height" "0"
                 ]
                 [ div
-                    [ style "display" "flex"
+                    [ class "scheduler-left-column"
+                    , style "display" "flex"
                     , style "flex-direction" "column"
                     , style "gap" "20px"
                     , style "flex-shrink" "0"
@@ -548,12 +558,14 @@ viewScheduler mode scheduler code =
                     , viewReadyQueue scheduler.readyQueue
                     ]
                 , div
-                    [ style "flex-grow" "1"
+                    [ class "scheduler-processes-column"
+                    , style "flex-grow" "1"
                     , style "min-width" "0"
                     ]
                     [ viewProcessesWithMailbox scheduler ]
                 , div
-                    [ style "width" "25vw"
+                    [ class "scheduler-traces-column"
+                    , style "width" "25vw"
                     , style "min-width" "35ch"
                     , style "flex-shrink" "0"
                     , style "display" "flex"
@@ -612,7 +624,8 @@ viewTraces traces =
 viewCodeExample : String -> Html msg
 viewCodeExample codeString =
     div
-        [ style "display" "flex"
+        [ class "code-example-container"
+        , style "display" "flex"
         , style "flex-direction" "column"
         , style "gap" "10px"
         ]
@@ -711,7 +724,8 @@ viewDemoLayout config =
             List.length (Zipper.listPrev config.history) + 1
     in
     div
-        [ style "padding" "20px"
+        [ class "demo-layout-container"
+        , style "padding" "20px"
         , style "font-family" "'JetBrains Mono'"
         , style "height" "100vh"
         , style "display" "flex"
@@ -726,84 +740,91 @@ viewDemoLayout config =
             , style "flex" "1"
             , style "min-height" "0"
             ]
-            [ div
-                [ style "display" "flex"
-                , style "flex-direction" "column"
-                , style "gap" "10px"
-                ]
                 [ div
-                    [ style "display" "flex"
+                    [ class "demo-controls-container"
+                    , style "display" "flex"
+                    , style "flex-direction" "column"
                     , style "gap" "10px"
-                    , style "align-items" "center"
-                    , style "flex-wrap" "wrap"
                     ]
-                    ([ button
-                        [ onClick config.stepBackward
-                        , disabled (not canStepBackward)
-                        , style "padding" "8px 16px"
-                        , style "font-family" "'JetBrains Mono', monospace"
+                    [ div
+                        [ class "demo-buttons-container"
+                        , style "display" "flex"
+                        , style "gap" "10px"
+                        , style "align-items" "center"
+                        , style "flex-wrap" "wrap"
                         ]
-                        [ text "← Step Backward" ]
-                     , button
-                        [ onClick config.stepForward
-                        , disabled (not canStepForward)
-                        , style "padding" "8px 16px"
-                        , style "font-family" "'JetBrains Mono', monospace"
-                        ]
-                        [ text "Step Forward →" ]
-                     , button
-                        [ onClick config.reset
-                        , style "padding" "8px 16px"
-                        , style "font-family" "'JetBrains Mono', monospace"
-                        ]
-                        [ text "Reset" ]
-                     ]
-                        ++ config.additionalControls
-                        ++ (case config.budgetControls of
-                                Just budgetConfig ->
-                                    [ div
-                                        [ style "display" "flex"
-                                        , style "align-items" "center"
-                                        , style "gap" "5px"
-                                        ]
-                                        [ label [ style "font-family" "'JetBrains Mono', monospace" ] [ text "Budget:" ]
-                                        , input
-                                            [ value budgetConfig.budgetField
-                                            , onInput budgetConfig.updateBudget
-                                            , style "width" "60px"
-                                            , style "padding" "4px"
-                                            , style "font-family" "'JetBrains Mono', monospace"
-                                            , type_ "number"
+                        ([ button
+                            [ class "demo-button"
+                            , onClick config.stepBackward
+                            , disabled (not canStepBackward)
+                            , style "padding" "8px 16px"
+                            , style "font-family" "'JetBrains Mono', monospace"
+                            ]
+                            [ text "← Step Backward" ]
+                         , button
+                            [ class "demo-button"
+                            , onClick config.stepForward
+                            , disabled (not canStepForward)
+                            , style "padding" "8px 16px"
+                            , style "font-family" "'JetBrains Mono', monospace"
+                            ]
+                            [ text "Step Forward →" ]
+                         , button
+                            [ class "demo-button"
+                            , onClick config.reset
+                            , style "padding" "8px 16px"
+                            , style "font-family" "'JetBrains Mono', monospace"
+                            ]
+                            [ text "Reset" ]
+                         ]
+                            ++ config.additionalControls
+                            ++ (case config.budgetControls of
+                                    Just budgetConfig ->
+                                        [ div
+                                            [ class "demo-budget-controls"
+                                            , style "display" "flex"
+                                            , style "align-items" "center"
+                                            , style "gap" "5px"
                                             ]
-                                            []
-                                        , button
-                                            [ case String.toInt budgetConfig.budgetField of
-                                                Just budget ->
-                                                    if budget >= 1 then
-                                                        onClick (budgetConfig.resetWithBudget budget)
+                                            [ label [ style "font-family" "'JetBrains Mono', monospace" ] [ text "Budget:" ]
+                                            , input
+                                                [ value budgetConfig.budgetField
+                                                , onInput budgetConfig.updateBudget
+                                                , style "width" "60px"
+                                                , style "padding" "4px"
+                                                , style "font-family" "'JetBrains Mono', monospace"
+                                                , type_ "number"
+                                                ]
+                                                []
+                                            , button
+                                                [ class "demo-button"
+                                                , case String.toInt budgetConfig.budgetField of
+                                                    Just budget ->
+                                                        if budget >= 1 then
+                                                            onClick (budgetConfig.resetWithBudget budget)
 
-                                                    else
+                                                        else
+                                                            disabled True
+
+                                                    Nothing ->
                                                         disabled True
-
-                                                Nothing ->
-                                                    disabled True
-                                            , style "padding" "8px 16px"
-                                            , style "font-family" "'JetBrains Mono', monospace"
+                                                , style "padding" "8px 16px"
+                                                , style "font-family" "'JetBrains Mono', monospace"
+                                                ]
+                                                [ text "Reset with budget" ]
+                                            , span
+                                                [ style "color" "#666"
+                                                , style "font-size" "14px"
+                                                , style "font-family" "'JetBrains Mono', monospace"
+                                                ]
+                                                [ text ("Current budget: " ++ String.fromInt (Scheduler.currentBudget currentScheduler)) ]
                                             ]
-                                            [ text "Reset with budget" ]
-                                        , span
-                                            [ style "color" "#666"
-                                            , style "font-size" "14px"
-                                            , style "font-family" "'JetBrains Mono', monospace"
-                                            ]
-                                            [ text ("Current budget: " ++ String.fromInt (Scheduler.currentBudget currentScheduler)) ]
                                         ]
-                                    ]
 
-                                Nothing ->
-                                    []
-                           )
-                    )
+                                    Nothing ->
+                                        []
+                               )
+                        )
                 , div
                     [ style "color" "#666"
                     , style "font-size" "14px"

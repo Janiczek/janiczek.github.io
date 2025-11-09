@@ -6731,6 +6731,15 @@ var $author$project$WritingYourOwnBeam$Demo4$UpdateBudget = function (a) {
 	return {$: 'UpdateBudget', a: a};
 };
 var $elm$html$Html$button = _VirtualDom_node('button');
+var $elm$json$Json$Encode$string = _Json_wrap;
+var $elm$html$Html$Attributes$stringProperty = F2(
+	function (key, string) {
+		return A2(
+			_VirtualDom_property,
+			key,
+			$elm$json$Json$Encode$string(string));
+	});
+var $elm$html$Html$Attributes$class = $elm$html$Html$Attributes$stringProperty('className');
 var $author$project$WritingYourOwnBeam$Scheduler$code4 = '\n    ex4 =\n        Work 5\n        Spawn ex4Child\n        Work 5\n        End\n\n    ex4Child =\n        Work 999\n        Work 10\n        End\n    ';
 var $elm$html$Html$div = _VirtualDom_node('div');
 var $elm$html$Html$label = _VirtualDom_node('label');
@@ -6834,14 +6843,6 @@ var $elm$html$Html$Events$onInput = function (tagger) {
 			A2($elm$json$Json$Decode$map, tagger, $elm$html$Html$Events$targetValue)));
 };
 var $elm$html$Html$span = _VirtualDom_node('span');
-var $elm$json$Json$Encode$string = _Json_wrap;
-var $elm$html$Html$Attributes$stringProperty = F2(
-	function (key, string) {
-		return A2(
-			_VirtualDom_property,
-			key,
-			$elm$json$Json$Encode$string(string));
-	});
 var $elm$html$Html$Attributes$type_ = $elm$html$Html$Attributes$stringProperty('type');
 var $elm$html$Html$Attributes$value = $elm$html$Html$Attributes$stringProperty('value');
 var $elm$html$Html$h3 = _VirtualDom_node('h3');
@@ -6933,6 +6934,7 @@ var $author$project$WritingYourOwnBeam$Shared$viewCodeExample = function (codeSt
 		$elm$html$Html$div,
 		_List_fromArray(
 			[
+				$elm$html$Html$Attributes$class('code-example-container'),
 				A2($elm$html$Html$Attributes$style, 'display', 'flex'),
 				A2($elm$html$Html$Attributes$style, 'flex-direction', 'column'),
 				A2($elm$html$Html$Attributes$style, 'gap', '10px')
@@ -7138,6 +7140,7 @@ var $author$project$WritingYourOwnBeam$Shared$viewProcesses = function (schedule
 		$elm$html$Html$div,
 		_List_fromArray(
 			[
+				$elm$html$Html$Attributes$class('processes-container'),
 				A2($elm$html$Html$Attributes$style, 'display', 'flex'),
 				A2($elm$html$Html$Attributes$style, 'flex-direction', 'column'),
 				A2($elm$html$Html$Attributes$style, 'gap', '10px')
@@ -7323,6 +7326,7 @@ var $author$project$WritingYourOwnBeam$Shared$viewProcessesWithMailbox = functio
 		$elm$html$Html$div,
 		_List_fromArray(
 			[
+				$elm$html$Html$Attributes$class('processes-container'),
 				A2($elm$html$Html$Attributes$style, 'display', 'flex'),
 				A2($elm$html$Html$Attributes$style, 'flex-direction', 'column'),
 				A2($elm$html$Html$Attributes$style, 'gap', '10px')
@@ -7536,6 +7540,7 @@ var $author$project$WritingYourOwnBeam$Shared$viewReadyQueue = function (readyQu
 		$elm$html$Html$div,
 		_List_fromArray(
 			[
+				$elm$html$Html$Attributes$class('ready-queue-container'),
 				A2($elm$html$Html$Attributes$style, 'display', 'flex'),
 				A2($elm$html$Html$Attributes$style, 'flex-direction', 'column'),
 				A2($elm$html$Html$Attributes$style, 'gap', '10px'),
@@ -7764,6 +7769,7 @@ var $author$project$WritingYourOwnBeam$Shared$viewScheduler = F3(
 					$elm$html$Html$div,
 					_List_fromArray(
 						[
+							$elm$html$Html$Attributes$class('scheduler-layout'),
 							A2($elm$html$Html$Attributes$style, 'display', 'flex'),
 							A2($elm$html$Html$Attributes$style, 'gap', '20px'),
 							A2($elm$html$Html$Attributes$style, 'align-items', 'stretch'),
@@ -7776,6 +7782,7 @@ var $author$project$WritingYourOwnBeam$Shared$viewScheduler = F3(
 							$elm$html$Html$div,
 							_List_fromArray(
 								[
+									$elm$html$Html$Attributes$class('scheduler-code-column'),
 									A2($elm$html$Html$Attributes$style, 'flex-shrink', '0')
 								]),
 							_List_fromArray(
@@ -7786,6 +7793,7 @@ var $author$project$WritingYourOwnBeam$Shared$viewScheduler = F3(
 							$elm$html$Html$div,
 							_List_fromArray(
 								[
+									$elm$html$Html$Attributes$class('scheduler-program-column'),
 									A2($elm$html$Html$Attributes$style, 'flex', '1'),
 									A2($elm$html$Html$Attributes$style, 'min-width', '0')
 								]),
@@ -7797,6 +7805,7 @@ var $author$project$WritingYourOwnBeam$Shared$viewScheduler = F3(
 							$elm$html$Html$div,
 							_List_fromArray(
 								[
+									$elm$html$Html$Attributes$class('scheduler-traces-column'),
 									A2($elm$html$Html$Attributes$style, 'width', '25vw'),
 									A2($elm$html$Html$Attributes$style, 'min-width', '35ch'),
 									A2($elm$html$Html$Attributes$style, 'flex-shrink', '0'),
@@ -7814,6 +7823,7 @@ var $author$project$WritingYourOwnBeam$Shared$viewScheduler = F3(
 					$elm$html$Html$div,
 					_List_fromArray(
 						[
+							$elm$html$Html$Attributes$class('scheduler-layout'),
 							A2($elm$html$Html$Attributes$style, 'display', 'flex'),
 							A2($elm$html$Html$Attributes$style, 'gap', '20px'),
 							A2($elm$html$Html$Attributes$style, 'align-items', 'stretch'),
@@ -7826,6 +7836,7 @@ var $author$project$WritingYourOwnBeam$Shared$viewScheduler = F3(
 							$elm$html$Html$div,
 							_List_fromArray(
 								[
+									$elm$html$Html$Attributes$class('scheduler-left-column'),
 									A2($elm$html$Html$Attributes$style, 'display', 'flex'),
 									A2($elm$html$Html$Attributes$style, 'flex-direction', 'column'),
 									A2($elm$html$Html$Attributes$style, 'gap', '20px'),
@@ -7840,6 +7851,7 @@ var $author$project$WritingYourOwnBeam$Shared$viewScheduler = F3(
 							$elm$html$Html$div,
 							_List_fromArray(
 								[
+									$elm$html$Html$Attributes$class('scheduler-processes-column'),
 									A2($elm$html$Html$Attributes$style, 'flex-grow', '1'),
 									A2($elm$html$Html$Attributes$style, 'min-width', '0')
 								]),
@@ -7851,6 +7863,7 @@ var $author$project$WritingYourOwnBeam$Shared$viewScheduler = F3(
 							$elm$html$Html$div,
 							_List_fromArray(
 								[
+									$elm$html$Html$Attributes$class('scheduler-traces-column'),
 									A2($elm$html$Html$Attributes$style, 'width', '25vw'),
 									A2($elm$html$Html$Attributes$style, 'min-width', '35ch'),
 									A2($elm$html$Html$Attributes$style, 'flex-shrink', '0'),
@@ -7868,6 +7881,7 @@ var $author$project$WritingYourOwnBeam$Shared$viewScheduler = F3(
 					$elm$html$Html$div,
 					_List_fromArray(
 						[
+							$elm$html$Html$Attributes$class('scheduler-layout'),
 							A2($elm$html$Html$Attributes$style, 'display', 'flex'),
 							A2($elm$html$Html$Attributes$style, 'gap', '20px'),
 							A2($elm$html$Html$Attributes$style, 'align-items', 'stretch'),
@@ -7880,6 +7894,7 @@ var $author$project$WritingYourOwnBeam$Shared$viewScheduler = F3(
 							$elm$html$Html$div,
 							_List_fromArray(
 								[
+									$elm$html$Html$Attributes$class('scheduler-left-column'),
 									A2($elm$html$Html$Attributes$style, 'display', 'flex'),
 									A2($elm$html$Html$Attributes$style, 'flex-direction', 'column'),
 									A2($elm$html$Html$Attributes$style, 'gap', '20px'),
@@ -7894,6 +7909,7 @@ var $author$project$WritingYourOwnBeam$Shared$viewScheduler = F3(
 							$elm$html$Html$div,
 							_List_fromArray(
 								[
+									$elm$html$Html$Attributes$class('scheduler-processes-column'),
 									A2($elm$html$Html$Attributes$style, 'flex-grow', '1'),
 									A2($elm$html$Html$Attributes$style, 'min-width', '0')
 								]),
@@ -7905,6 +7921,7 @@ var $author$project$WritingYourOwnBeam$Shared$viewScheduler = F3(
 							$elm$html$Html$div,
 							_List_fromArray(
 								[
+									$elm$html$Html$Attributes$class('scheduler-traces-column'),
 									A2($elm$html$Html$Attributes$style, 'width', '25vw'),
 									A2($elm$html$Html$Attributes$style, 'min-width', '35ch'),
 									A2($elm$html$Html$Attributes$style, 'flex-shrink', '0'),
@@ -7929,6 +7946,7 @@ var $author$project$WritingYourOwnBeam$Shared$viewDemoLayout = function (config)
 		$elm$html$Html$div,
 		_List_fromArray(
 			[
+				$elm$html$Html$Attributes$class('demo-layout-container'),
 				A2($elm$html$Html$Attributes$style, 'padding', '20px'),
 				A2($elm$html$Html$Attributes$style, 'font-family', '\'JetBrains Mono\''),
 				A2($elm$html$Html$Attributes$style, 'height', '100vh'),
@@ -7965,6 +7983,7 @@ var $author$project$WritingYourOwnBeam$Shared$viewDemoLayout = function (config)
 						$elm$html$Html$div,
 						_List_fromArray(
 							[
+								$elm$html$Html$Attributes$class('demo-controls-container'),
 								A2($elm$html$Html$Attributes$style, 'display', 'flex'),
 								A2($elm$html$Html$Attributes$style, 'flex-direction', 'column'),
 								A2($elm$html$Html$Attributes$style, 'gap', '10px')
@@ -7975,6 +7994,7 @@ var $author$project$WritingYourOwnBeam$Shared$viewDemoLayout = function (config)
 								$elm$html$Html$div,
 								_List_fromArray(
 									[
+										$elm$html$Html$Attributes$class('demo-buttons-container'),
 										A2($elm$html$Html$Attributes$style, 'display', 'flex'),
 										A2($elm$html$Html$Attributes$style, 'gap', '10px'),
 										A2($elm$html$Html$Attributes$style, 'align-items', 'center'),
@@ -7987,6 +8007,7 @@ var $author$project$WritingYourOwnBeam$Shared$viewDemoLayout = function (config)
 											$elm$html$Html$button,
 											_List_fromArray(
 												[
+													$elm$html$Html$Attributes$class('demo-button'),
 													$elm$html$Html$Events$onClick(config.stepBackward),
 													$elm$html$Html$Attributes$disabled(!canStepBackward),
 													A2($elm$html$Html$Attributes$style, 'padding', '8px 16px'),
@@ -8000,6 +8021,7 @@ var $author$project$WritingYourOwnBeam$Shared$viewDemoLayout = function (config)
 											$elm$html$Html$button,
 											_List_fromArray(
 												[
+													$elm$html$Html$Attributes$class('demo-button'),
 													$elm$html$Html$Events$onClick(config.stepForward),
 													$elm$html$Html$Attributes$disabled(!canStepForward),
 													A2($elm$html$Html$Attributes$style, 'padding', '8px 16px'),
@@ -8013,6 +8035,7 @@ var $author$project$WritingYourOwnBeam$Shared$viewDemoLayout = function (config)
 											$elm$html$Html$button,
 											_List_fromArray(
 												[
+													$elm$html$Html$Attributes$class('demo-button'),
 													$elm$html$Html$Events$onClick(config.reset),
 													A2($elm$html$Html$Attributes$style, 'padding', '8px 16px'),
 													A2($elm$html$Html$Attributes$style, 'font-family', '\'JetBrains Mono\', monospace')
@@ -8034,6 +8057,7 @@ var $author$project$WritingYourOwnBeam$Shared$viewDemoLayout = function (config)
 														$elm$html$Html$div,
 														_List_fromArray(
 															[
+																$elm$html$Html$Attributes$class('demo-budget-controls'),
 																A2($elm$html$Html$Attributes$style, 'display', 'flex'),
 																A2($elm$html$Html$Attributes$style, 'align-items', 'center'),
 																A2($elm$html$Html$Attributes$style, 'gap', '5px')
@@ -8066,6 +8090,7 @@ var $author$project$WritingYourOwnBeam$Shared$viewDemoLayout = function (config)
 																$elm$html$Html$button,
 																_List_fromArray(
 																	[
+																		$elm$html$Html$Attributes$class('demo-button'),
 																		function () {
 																		var _v1 = $elm$core$String$toInt(budgetConfig.budgetField);
 																		if (_v1.$ === 'Just') {
@@ -8145,6 +8170,7 @@ var $author$project$WritingYourOwnBeam$Demo4$view = function (model) {
 					$elm$html$Html$button,
 					_List_fromArray(
 						[
+							$elm$html$Html$Attributes$class('demo-button'),
 							$elm$html$Html$Events$onClick($author$project$WritingYourOwnBeam$Demo4$SwitchToAllAtOnce),
 							A2($elm$html$Html$Attributes$style, 'padding', '8px 16px'),
 							A2($elm$html$Html$Attributes$style, 'font-family', '\'JetBrains Mono\', monospace'),
@@ -8168,6 +8194,7 @@ var $author$project$WritingYourOwnBeam$Demo4$view = function (model) {
 					$elm$html$Html$button,
 					_List_fromArray(
 						[
+							$elm$html$Html$Attributes$class('demo-button'),
 							$elm$html$Html$Events$onClick($author$project$WritingYourOwnBeam$Demo4$SwitchToReductionsBudget),
 							A2($elm$html$Html$Attributes$style, 'padding', '8px 16px'),
 							A2($elm$html$Html$Attributes$style, 'font-family', '\'JetBrains Mono\', monospace'),

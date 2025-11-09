@@ -141,7 +141,8 @@ view model =
                 ]
                 [ Html.label [] [ Html.text "Work Type:" ]
                 , Html.button
-                    [ Html.Events.onClick SwitchToAllAtOnce
+                    [ Html.Attributes.class "demo-button"
+                    , Html.Events.onClick SwitchToAllAtOnce
                     , Html.Attributes.style "padding" "8px 16px"
                     , Html.Attributes.style "font-family" "'JetBrains Mono', monospace"
                     , Html.Attributes.style "background-color"
@@ -155,7 +156,8 @@ view model =
                     ]
                     [ Html.text "All At Once" ]
                 , Html.button
-                    [ Html.Events.onClick SwitchToReductionsBudget
+                    [ Html.Attributes.class "demo-button"
+                    , Html.Events.onClick SwitchToReductionsBudget
                     , Html.Attributes.style "padding" "8px 16px"
                     , Html.Attributes.style "font-family" "'JetBrains Mono', monospace"
                     , Html.Attributes.style "background-color"
