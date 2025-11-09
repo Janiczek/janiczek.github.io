@@ -1,4 +1,4 @@
 install: bundle install
 serve:   bundle exec jekyll serve --livereload
 build:   bundle exec jekyll build
-elm:     for x in _scripts/*.elm; do BASE=$(basename "$x"); elm make "$x" --output "assets/js/$BASE.js"; done
+elm:     for x in $(grep -rl 'main =' src/); do BASE=$(echo "$x" | sed 's|^src/||; s|\.elm$||; s|/||g'); elm make "$x" --output "assets/js/$BASE.elm.js"; done

@@ -5306,7 +5306,7 @@ var $elm$core$List$head = function (list) {
 		return $elm$core$Maybe$Nothing;
 	}
 };
-var $elm_community$list_extra$List$Extra$getAt = F2(
+var $elmcraft$core_extra$List$Extra$getAt = F2(
 	function (idx, xs) {
 		return (idx < 0) ? $elm$core$Maybe$Nothing : $elm$core$List$head(
 			A2($elm$core$List$drop, idx, xs));
@@ -5496,7 +5496,7 @@ var $author$project$Gallery$view = function (model) {
 		model.images);
 	var currentImage = function () {
 		var _v0 = A2(
-			$elm_community$list_extra$List$Extra$getAt,
+			$elmcraft$core_extra$List$Extra$getAt,
 			$author$project$Gallery$currentIndex(model),
 			model.images);
 		if (_v0.$ === 'Nothing') {
