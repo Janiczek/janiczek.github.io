@@ -569,8 +569,8 @@ We can make an interesting optimization in the `shouldEnqueue` function:
 ```elm
 shouldEnqueue proc =
     -- ...
-    -- Optimization: if we ended up on `End`,
-    -- we don't need to run again.
+    -- Optimization: we don't need to `Receive`
+    -- if there's no interesting message.
     Receive wantedMsg _ ->
         Queue.toList proc.mailbox
             |> List.any (\msg -> msg == wantedMsg)
@@ -625,7 +625,7 @@ setMailbox newMailbox proc =
 
 This code is not very elegant due to plucking a message from the middle of a queue, but it does what I described in the previous paragraph.
 
-[Try it online,](https://ellie-app.com/x4Qgrtz29Z8a1) or try the visualizer below.
+[Try it online,](https://ellie-app.com/x4Th2jNCtFWa1) or try the visualizer below.
 
 <script src="/assets/js/WritingYourOwnBeamDemo6.elm.js"></script>
 <div class="theme_fullscreen">
