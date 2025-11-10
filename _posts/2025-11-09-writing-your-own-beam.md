@@ -23,7 +23,7 @@ type Program
     | Work Int K
     | Spawn Program KPid
     | Send Pid String K
-    | Receive ( String, K )
+    | Receive String K
     | Crash
     | Link Pid K
 
@@ -39,7 +39,7 @@ type Stmt
     | Work Int
     | Spawn Program
     | Send Pid String
-    | Receive ( String, Program )
+    | Receive String Program
     | Crash
     | Link Pid
 
@@ -659,7 +659,7 @@ app.ports.jumpToBottomOfTraces.subscribe((traceId) => {
 });
 </script>
 
-You can see thing lined up nicely: process 1 has `"Ping"` in its mailbox and also is about to try and `Receive "Ping"`. In the next step the message is gone and the process is doing `Work`. Success!
+You can see things have lined up nicely: process 1 has `"Ping"` in its mailbox and also is about to try and `Receive "Ping"`. In the next step the message is gone and the process is doing `Work`. Success!
 
 ## Instruction: `Crash`, `Link`
 
