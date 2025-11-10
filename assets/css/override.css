@@ -197,8 +197,6 @@ pre:hover>code.hljs {
   /* Adjust demo layout container padding on mobile */
   .demo-layout-container {
     padding: 10px !important;
-    height: auto !important;
-    min-height: 100vh !important;
   }
 
   /* Make buttons smaller on mobile */

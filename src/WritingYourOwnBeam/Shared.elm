@@ -1,17 +1,15 @@
-module WritingYourOwnBeam.Shared exposing
+port module WritingYourOwnBeam.Shared exposing
     ( ProcessState(..)
     , SchedulerViewMode(..)
     , deriveProcessState
-    , handleHasScrolledToBottomOfTrace
     , handleStepBackward
     , handleStepForward
     , isFinished
     , isReceive
-    , jumpToBottomOfTraces
     , processStateToColor
     , processStateToText
+    , jumpToBottomOfTraces
     , stepToString
-    , traceId
     , viewCodeExample
     , viewDemoLayout
     , viewProcesses
@@ -23,7 +21,6 @@ module WritingYourOwnBeam.Shared exposing
     , workTypeToString
     )
 
-import Browser.Dom as Dom
 import Dict
 import Html exposing (..)
 import Html.Attributes exposing (..)
@@ -31,8 +28,9 @@ import Html.Events exposing (onClick, onInput)
 import List.NonEmpty.Zipper as Zipper exposing (Zipper)
 import Queue exposing (Queue)
 import String.Extra
-import Task
 import WritingYourOwnBeam.Scheduler as Scheduler exposing (Pid, Proc, Scheduler, Step(..))
+
+port jumpToBottomOfTraces : String -> Cmd msg
 
 
 type ProcessState
@@ -135,16 +133,6 @@ processStateToText state =
             "Zombie (bug?)"
 
 
-traceId : String
-traceId =
-    "trace"
-
-
-jumpToBottomOfTraces : Cmd (Result Dom.Error ())
-jumpToBottomOfTraces =
-    Dom.getViewportOf traceId
-        |> Task.andThen (\info -> Dom.setViewportOf traceId 0 info.scene.height)
-        |> Task.attempt identity
 
 
 isFinished : Scheduler -> Bool
@@ -204,7 +192,7 @@ viewProcesses : Scheduler -> Html msg
 viewProcesses scheduler =
     div [ class "processes-container", style "display" "flex", style "flex-direction" "column", style "gap" "10px" ]
         [ h3 [ style "margin-bottom" "0" ] [ text "Processes" ]
-        , div [ style "min-height" "calc(38px * 3)" ]
+        , div []
             [ table
                 [ style "border-collapse" "collapse"
                 , style "font-family" "'JetBrains Mono', monospace"
@@ -232,7 +220,7 @@ viewProcessesWithMailbox : Scheduler -> Html msg
 viewProcessesWithMailbox scheduler =
     div [ class "processes-container", style "display" "flex", style "flex-direction" "column", style "gap" "10px" ]
         [ h3 [ style "margin-bottom" "0" ] [ text "Processes" ]
-        , div [ style "min-height" "calc(38px * 3)" ]
+        , div []
             [ table
                 [ style "border-collapse" "collapse"
                 , style "font-family" "'JetBrains Mono', monospace"
@@ -440,7 +428,7 @@ viewReadyQueue readyQueue =
     in
     div [ class "ready-queue-container", style "display" "flex", style "flex-direction" "column", style "gap" "10px", style "width" "fit-content" ]
         [ h3 [ style "margin-bottom" "0" ] [ text "Ready Queue" ]
-        , div [ style "background" "#f5f5f5", style "padding" "10px", style "border-radius" "4px", style "min-height" "4.5em" ]
+        , div [ style "background" "#f5f5f5", style "padding" "10px", style "border-radius" "4px" ]
             [ ul
                 [ style "list-style-type" "none"
                 , style "padding" "0"
@@ -468,8 +456,8 @@ viewReadyQueue readyQueue =
         ]
 
 
-viewScheduler : SchedulerViewMode -> Scheduler -> String -> Html msg
-viewScheduler mode scheduler code =
+viewScheduler : SchedulerViewMode -> Scheduler -> String -> String -> Html msg
+viewScheduler mode scheduler code traceId =
     case mode of
         SimpleProgram ->
             div
@@ -477,8 +465,6 @@ viewScheduler mode scheduler code =
                 , style "display" "flex"
                 , style "gap" "20px"
                 , style "align-items" "stretch"
-                , style "flex" "1"
-                , style "min-height" "0"
                 ]
                 [ div
                     [ class "scheduler-code-column"
@@ -496,10 +482,8 @@ viewScheduler mode scheduler code =
                     , style "width" "25vw"
                     , style "min-width" "35ch"
                     , style "flex-shrink" "0"
-                    , style "display" "flex"
-                    , style "flex-direction" "column"
                     ]
-                    [ viewTraces (List.reverse scheduler.revTraces) ]
+                    [ viewTraces traceId (List.reverse scheduler.revTraces) ]
                 ]
 
         ProcessTable ->
@@ -508,8 +492,6 @@ viewScheduler mode scheduler code =
                 , style "display" "flex"
                 , style "gap" "20px"
                 , style "align-items" "stretch"
-                , style "flex" "1"
-                , style "min-height" "0"
                 ]
                 [ div
                     [ class "scheduler-left-column"
@@ -532,10 +514,8 @@ viewScheduler mode scheduler code =
                     , style "width" "25vw"
                     , style "min-width" "35ch"
                     , style "flex-shrink" "0"
-                    , style "display" "flex"
-                    , style "flex-direction" "column"
                     ]
-                    [ viewTraces (List.reverse scheduler.revTraces) ]
+                    [ viewTraces traceId (List.reverse scheduler.revTraces) ]
                 ]
 
         ProcessTableWithMailbox ->
@@ -544,8 +524,6 @@ viewScheduler mode scheduler code =
                 , style "display" "flex"
                 , style "gap" "20px"
                 , style "align-items" "stretch"
-                , style "flex" "1"
-                , style "min-height" "0"
                 ]
                 [ div
                     [ class "scheduler-left-column"
@@ -568,29 +546,24 @@ viewScheduler mode scheduler code =
                     , style "width" "25vw"
                     , style "min-width" "35ch"
                     , style "flex-shrink" "0"
-                    , style "display" "flex"
-                    , style "flex-direction" "column"
                     ]
-                    [ viewTraces (List.reverse scheduler.revTraces) ]
+                    [ viewTraces traceId (List.reverse scheduler.revTraces) ]
                 ]
 
 
-viewTraces : List (List Step) -> Html msg
-viewTraces traces =
+viewTraces : String -> List (List Step) -> Html msg
+viewTraces traceId traces =
     div
         [ style "display" "flex"
         , style "flex-direction" "column"
         , style "gap" "10px"
-        , style "flex" "1"
-        , style "min-height" "0"
         ]
         [ h3 [ style "margin-bottom" "0" ] [ text "Execution Trace" ]
         , div
             [ style "background" "#f9f9f9"
             , style "padding" "10px"
             , style "border-radius" "4px"
-            , style "flex" "1"
-            , style "min-height" "0"
+            , style "max-height" "400px"
             , style "overflow-y" "auto"
             , style "font-family" "monospace"
             , style "font-size" "14px"
@@ -679,9 +652,6 @@ handleStepBackward model =
             model
 
 
-handleHasScrolledToBottomOfTrace : model -> model
-handleHasScrolledToBottomOfTrace model =
-    model
 
 
 
@@ -696,6 +666,7 @@ viewDemoLayout :
     , history : Zipper Scheduler
     , schedulerMode : SchedulerViewMode
     , codeExample : String
+    , traceId : String
     , additionalControls : List (Html msg)
     , budgetControls :
         Maybe
@@ -727,7 +698,6 @@ viewDemoLayout config =
         [ class "demo-layout-container"
         , style "padding" "20px"
         , style "font-family" "'JetBrains Mono'"
-        , style "height" "100vh"
         , style "display" "flex"
         , style "flex-direction" "column"
         , style "box-sizing" "border-box"
@@ -737,8 +707,6 @@ viewDemoLayout config =
             [ style "display" "flex"
             , style "flex-direction" "column"
             , style "gap" "20px"
-            , style "flex" "1"
-            , style "min-height" "0"
             ]
                 [ div
                     [ class "demo-controls-container"
@@ -832,7 +800,7 @@ viewDemoLayout config =
                     ]
                     [ text ("Step " ++ String.fromInt stepNumber) ]
                 ]
-            , viewScheduler config.schedulerMode currentScheduler config.codeExample
+            , viewScheduler config.schedulerMode currentScheduler config.codeExample config.traceId
             ]
         ]
 

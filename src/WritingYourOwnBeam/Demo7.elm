@@ -1,7 +1,6 @@
 module WritingYourOwnBeam.Demo7 exposing (main)
 
 import Browser
-import Browser.Dom
 import Html exposing (Html)
 import Html.Attributes
 import Html.Events
@@ -24,7 +23,6 @@ type Msg
     | FixBug
     | UpdateBudget String
     | ResetWithBudget Int
-    | HasScrolledToBottomOfTrace (Result Browser.Dom.Error ())
 
 
 init : () -> ( Model, Cmd Msg )
@@ -65,14 +63,12 @@ update msg model =
     case msg of
         StepForward ->
             ( Shared.handleStepForward model
-            , Shared.jumpToBottomOfTraces
-                |> Cmd.map HasScrolledToBottomOfTrace
+            , Shared.jumpToBottomOfTraces "trace7"
             )
 
         StepBackward ->
             ( Shared.handleStepBackward model
-            , Shared.jumpToBottomOfTraces
-                |> Cmd.map HasScrolledToBottomOfTrace
+            , Shared.jumpToBottomOfTraces "trace7"
             )
 
         Reset ->
@@ -97,11 +93,6 @@ update msg model =
         ResetWithBudget budgetInt ->
             initWithBudget budgetInt
 
-        HasScrolledToBottomOfTrace _ ->
-            ( model
-                |> Shared.handleHasScrolledToBottomOfTrace
-            , Cmd.none
-            )
 
 
 view : Model -> Html Msg
@@ -131,6 +122,7 @@ view model =
 
             else
                 Scheduler.code7
+        , traceId = "trace7"
         , additionalControls = additionalControls
         , budgetControls =
             Just

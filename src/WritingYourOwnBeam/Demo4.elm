@@ -1,7 +1,6 @@
 module WritingYourOwnBeam.Demo4 exposing (main)
 
 import Browser
-import Browser.Dom
 import Html exposing (Html)
 import Html.Attributes
 import Html.Events
@@ -25,7 +24,6 @@ type Msg
     | ResetWithBudget Int
     | SwitchToAllAtOnce
     | SwitchToReductionsBudget
-    | HasScrolledToBottomOfTrace (Result Browser.Dom.Error ())
 
 
 init : () -> ( Model, Cmd Msg )
@@ -93,14 +91,12 @@ update msg model =
     case msg of
         StepForward ->
             ( Shared.handleStepForward model
-            , Shared.jumpToBottomOfTraces
-                |> Cmd.map HasScrolledToBottomOfTrace
+            , Shared.jumpToBottomOfTraces "trace4"
             )
 
         StepBackward ->
             ( Shared.handleStepBackward model
-            , Shared.jumpToBottomOfTraces
-                |> Cmd.map HasScrolledToBottomOfTrace
+            , Shared.jumpToBottomOfTraces "trace4"
             )
 
         Reset ->
@@ -121,12 +117,6 @@ update msg model =
                 |> String.toInt
                 |> Maybe.withDefault 1
                 |> initWithBudget
-
-        HasScrolledToBottomOfTrace _ ->
-            ( model
-                |> Shared.handleHasScrolledToBottomOfTrace
-            , Cmd.none
-            )
 
 
 view : Model -> Html Msg
@@ -181,6 +171,7 @@ view model =
         , history = model.history
         , schedulerMode = Shared.ProcessTable
         , codeExample = Scheduler.code4
+        , traceId = "trace4"
         , additionalControls = workTypeButtons
         , budgetControls =
             case model.workType of

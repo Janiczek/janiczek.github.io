@@ -106,13 +106,20 @@ step sch =
 
 [Try it online,](https://ellie-app.com/x4ykjfHJ5Sra1) or try the visualizer below:
 
+<script>
+let app = null;
+</script>
+
 <script src="/assets/js/WritingYourOwnBeamDemo1.elm.js"></script>
 <div class="theme_fullscreen">
     <div id="demo1" style="color: red">Oh no, the visualizer didn't load!</div>
 </div>
 <script>
-Elm.WritingYourOwnBeam.Demo1.init({
+app = Elm.WritingYourOwnBeam.Demo1.init({
     node: document.getElementById('demo1'),
+});
+app.ports.jumpToBottomOfTraces.subscribe((traceId) => {
+    document.getElementById(traceId).scrollTop = document.getElementById(traceId).scrollHeight;
 });
 </script>
 
@@ -159,8 +166,11 @@ For now we'll just ignore how much work it's supposed to be, and continue with t
     <div id="demo2" style="color: red">Oh no, the visualizer didn't load!</div>
 </div>
 <script>
-Elm.WritingYourOwnBeam.Demo2.init({
+app = Elm.WritingYourOwnBeam.Demo2.init({
     node: document.getElementById('demo2'),
+});
+app.ports.jumpToBottomOfTraces.subscribe((traceId) => {
+    document.getElementById(traceId).scrollTop = document.getElementById(traceId).scrollHeight;
 });
 </script>
 
@@ -308,8 +318,11 @@ Our scheduler now takes 7 steps to finish the whole program, which corresponds t
     <div id="demo3" style="color: red">Oh no, the visualizer didn't load!</div>
 </div>
 <script>
-Elm.WritingYourOwnBeam.Demo3.init({
+app = Elm.WritingYourOwnBeam.Demo3.init({
     node: document.getElementById('demo3'),
+});
+app.ports.jumpToBottomOfTraces.subscribe((traceId) => {
+    document.getElementById(traceId).scrollTop = document.getElementById(traceId).scrollHeight;
 });
 </script>
 
@@ -446,8 +459,11 @@ Otherwise we calculate how much work _can_ be done, and update the remaining wor
     <div id="demo4" style="color: red">Oh no, the visualizer didn't load!</div>
 </div>
 <script>
-Elm.WritingYourOwnBeam.Demo4.init({
+app = Elm.WritingYourOwnBeam.Demo4.init({
     node: document.getElementById('demo4'),
+});
+app.ports.jumpToBottomOfTraces.subscribe((traceId) => {
+    document.getElementById(traceId).scrollTop = document.getElementById(traceId).scrollHeight;
 });
 </script>
 
@@ -531,8 +547,11 @@ When we send a message to a process, we also enqueue it to make sure it has a ch
     <div id="demo5" style="color: red">Oh no, the visualizer didn't load!</div>
 </div>
 <script>
-Elm.WritingYourOwnBeam.Demo5.init({
+app = Elm.WritingYourOwnBeam.Demo5.init({
     node: document.getElementById('demo5'),
+});
+app.ports.jumpToBottomOfTraces.subscribe((traceId) => {
+    document.getElementById(traceId).scrollTop = document.getElementById(traceId).scrollHeight;
 });
 </script>
 
@@ -632,8 +651,11 @@ This code is not very elegant due to plucking a message from the middle of a que
     <div id="demo6" style="color: red">Oh no, the visualizer didn't load!</div>
 </div>
 <script>
-Elm.WritingYourOwnBeam.Demo6.init({
+app = Elm.WritingYourOwnBeam.Demo6.init({
     node: document.getElementById('demo6'),
+});
+app.ports.jumpToBottomOfTraces.subscribe((traceId) => {
+    document.getElementById(traceId).scrollTop = document.getElementById(traceId).scrollHeight;
 });
 </script>
 
@@ -739,8 +761,11 @@ In a real-world interpreter, we'd distinguish between user messages and system m
     <div id="demo7" style="color: red">Oh no, the visualizer didn't load!</div>
 </div>
 <script>
-Elm.WritingYourOwnBeam.Demo7.init({
+app = Elm.WritingYourOwnBeam.Demo7.init({
     node: document.getElementById('demo7'),
+});
+app.ports.jumpToBottomOfTraces.subscribe((traceId) => {
+    document.getElementById(traceId).scrollTop = document.getElementById(traceId).scrollHeight;
 });
 </script>
 

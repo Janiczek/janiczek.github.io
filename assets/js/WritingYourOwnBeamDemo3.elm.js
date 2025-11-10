@@ -5468,12 +5468,6 @@ var $author$project$WritingYourOwnBeam$Demo3$init = function (_v0) {
 };
 var $elm$core$Platform$Sub$batch = _Platform_batch;
 var $elm$core$Platform$Sub$none = $elm$core$Platform$Sub$batch(_List_Nil);
-var $author$project$WritingYourOwnBeam$Demo3$HasScrolledToBottomOfTrace = function (a) {
-	return {$: 'HasScrolledToBottomOfTrace', a: a};
-};
-var $author$project$WritingYourOwnBeam$Shared$handleHasScrolledToBottomOfTrace = function (model) {
-	return model;
-};
 var $turboMaCk$non_empty_list_alias$List$NonEmpty$Zipper$prev = function (_v0) {
 	var p = _v0.a;
 	var f = _v0.b;
@@ -6652,63 +6646,24 @@ var $author$project$WritingYourOwnBeam$Shared$handleStepForward = function (mode
 		model,
 		{history: newHistory});
 };
-var $elm$core$Basics$composeL = F3(
-	function (g, f, x) {
-		return g(
-			f(x));
-	});
-var $elm$core$Task$onError = _Scheduler_onError;
-var $elm$core$Task$attempt = F2(
-	function (resultToMessage, task) {
-		return $elm$core$Task$command(
-			$elm$core$Task$Perform(
-				A2(
-					$elm$core$Task$onError,
-					A2(
-						$elm$core$Basics$composeL,
-						A2($elm$core$Basics$composeL, $elm$core$Task$succeed, resultToMessage),
-						$elm$core$Result$Err),
-					A2(
-						$elm$core$Task$andThen,
-						A2(
-							$elm$core$Basics$composeL,
-							A2($elm$core$Basics$composeL, $elm$core$Task$succeed, resultToMessage),
-							$elm$core$Result$Ok),
-						task))));
-	});
-var $elm$browser$Browser$Dom$getViewportOf = _Browser_getViewportOf;
-var $elm$browser$Browser$Dom$setViewportOf = _Browser_setViewportOf;
-var $author$project$WritingYourOwnBeam$Shared$traceId = 'trace';
-var $author$project$WritingYourOwnBeam$Shared$jumpToBottomOfTraces = A2(
-	$elm$core$Task$attempt,
-	$elm$core$Basics$identity,
-	A2(
-		$elm$core$Task$andThen,
-		function (info) {
-			return A3($elm$browser$Browser$Dom$setViewportOf, $author$project$WritingYourOwnBeam$Shared$traceId, 0, info.scene.height);
-		},
-		$elm$browser$Browser$Dom$getViewportOf($author$project$WritingYourOwnBeam$Shared$traceId)));
-var $elm$core$Platform$Cmd$map = _Platform_map;
+var $elm$json$Json$Encode$string = _Json_wrap;
+var $author$project$WritingYourOwnBeam$Shared$jumpToBottomOfTraces = _Platform_outgoingPort('jumpToBottomOfTraces', $elm$json$Json$Encode$string);
 var $author$project$WritingYourOwnBeam$Demo3$update = F2(
 	function (msg, model) {
 		switch (msg.$) {
 			case 'StepForward':
 				return _Utils_Tuple2(
 					$author$project$WritingYourOwnBeam$Shared$handleStepForward(model),
-					A2($elm$core$Platform$Cmd$map, $author$project$WritingYourOwnBeam$Demo3$HasScrolledToBottomOfTrace, $author$project$WritingYourOwnBeam$Shared$jumpToBottomOfTraces));
+					$author$project$WritingYourOwnBeam$Shared$jumpToBottomOfTraces('trace3'));
 			case 'StepBackward':
 				return _Utils_Tuple2(
 					$author$project$WritingYourOwnBeam$Shared$handleStepBackward(model),
-					A2($elm$core$Platform$Cmd$map, $author$project$WritingYourOwnBeam$Demo3$HasScrolledToBottomOfTrace, $author$project$WritingYourOwnBeam$Shared$jumpToBottomOfTraces));
+					$author$project$WritingYourOwnBeam$Shared$jumpToBottomOfTraces('trace3'));
 			case 'HintAtProblem':
 				return $author$project$WritingYourOwnBeam$Demo3$initWithProgram(
 					{hint: true});
-			case 'Reset':
-				return $author$project$WritingYourOwnBeam$Demo3$init(_Utils_Tuple0);
 			default:
-				return _Utils_Tuple2(
-					$author$project$WritingYourOwnBeam$Shared$handleHasScrolledToBottomOfTrace(model),
-					$elm$core$Platform$Cmd$none);
+				return $author$project$WritingYourOwnBeam$Demo3$init(_Utils_Tuple0);
 		}
 	});
 var $author$project$WritingYourOwnBeam$Demo3$HintAtProblem = {$: 'HintAtProblem'};
@@ -6717,7 +6672,6 @@ var $author$project$WritingYourOwnBeam$Demo3$Reset = {$: 'Reset'};
 var $author$project$WritingYourOwnBeam$Demo3$StepBackward = {$: 'StepBackward'};
 var $author$project$WritingYourOwnBeam$Demo3$StepForward = {$: 'StepForward'};
 var $elm$html$Html$button = _VirtualDom_node('button');
-var $elm$json$Json$Encode$string = _Json_wrap;
 var $elm$html$Html$Attributes$stringProperty = F2(
 	function (key, string) {
 		return A2(
@@ -7146,10 +7100,7 @@ var $author$project$WritingYourOwnBeam$Shared$viewProcesses = function (schedule
 					])),
 				A2(
 				$elm$html$Html$div,
-				_List_fromArray(
-					[
-						A2($elm$html$Html$Attributes$style, 'min-height', 'calc(38px * 3)')
-					]),
+				_List_Nil,
 				_List_fromArray(
 					[
 						A2(
@@ -7332,10 +7283,7 @@ var $author$project$WritingYourOwnBeam$Shared$viewProcessesWithMailbox = functio
 					])),
 				A2(
 				$elm$html$Html$div,
-				_List_fromArray(
-					[
-						A2($elm$html$Html$Attributes$style, 'min-height', 'calc(38px * 3)')
-					]),
+				_List_Nil,
 				_List_fromArray(
 					[
 						A2(
@@ -7551,8 +7499,7 @@ var $author$project$WritingYourOwnBeam$Shared$viewReadyQueue = function (readyQu
 					[
 						A2($elm$html$Html$Attributes$style, 'background', '#f5f5f5'),
 						A2($elm$html$Html$Attributes$style, 'padding', '10px'),
-						A2($elm$html$Html$Attributes$style, 'border-radius', '4px'),
-						A2($elm$html$Html$Attributes$style, 'min-height', '4.5em')
+						A2($elm$html$Html$Attributes$style, 'border-radius', '4px')
 					]),
 				_List_fromArray(
 					[
@@ -7672,60 +7619,44 @@ var $author$project$WritingYourOwnBeam$Shared$stepToString = function (step) {
 			return 'Nothing in the ready queue';
 	}
 };
-var $author$project$WritingYourOwnBeam$Shared$viewTraces = function (traces) {
-	return A2(
-		$elm$html$Html$div,
-		_List_fromArray(
-			[
-				A2($elm$html$Html$Attributes$style, 'display', 'flex'),
-				A2($elm$html$Html$Attributes$style, 'flex-direction', 'column'),
-				A2($elm$html$Html$Attributes$style, 'gap', '10px'),
-				A2($elm$html$Html$Attributes$style, 'flex', '1'),
-				A2($elm$html$Html$Attributes$style, 'min-height', '0')
-			]),
-		_List_fromArray(
-			[
-				A2(
-				$elm$html$Html$h3,
-				_List_fromArray(
-					[
-						A2($elm$html$Html$Attributes$style, 'margin-bottom', '0')
-					]),
-				_List_fromArray(
-					[
-						$elm$html$Html$text('Execution Trace')
-					])),
-				A2(
-				$elm$html$Html$div,
-				_List_fromArray(
-					[
-						A2($elm$html$Html$Attributes$style, 'background', '#f9f9f9'),
-						A2($elm$html$Html$Attributes$style, 'padding', '10px'),
-						A2($elm$html$Html$Attributes$style, 'border-radius', '4px'),
-						A2($elm$html$Html$Attributes$style, 'flex', '1'),
-						A2($elm$html$Html$Attributes$style, 'min-height', '0'),
-						A2($elm$html$Html$Attributes$style, 'overflow-y', 'auto'),
-						A2($elm$html$Html$Attributes$style, 'font-family', 'monospace'),
-						A2($elm$html$Html$Attributes$style, 'font-size', '14px'),
-						$elm$html$Html$Attributes$id($author$project$WritingYourOwnBeam$Shared$traceId)
-					]),
-				$elm$core$List$isEmpty(traces) ? _List_fromArray(
-					[
-						A2(
-						$elm$html$Html$div,
-						_List_fromArray(
-							[
-								A2($elm$html$Html$Attributes$style, 'margin', '2px 0'),
-								A2($elm$html$Html$Attributes$style, 'padding', '2px 0')
-							]),
-						_List_fromArray(
-							[
-								$elm$html$Html$text('No steps yet')
-							]))
-					]) : A2(
-					$elm$core$List$map,
-					function (step) {
-						return A2(
+var $author$project$WritingYourOwnBeam$Shared$viewTraces = F2(
+	function (traceId, traces) {
+		return A2(
+			$elm$html$Html$div,
+			_List_fromArray(
+				[
+					A2($elm$html$Html$Attributes$style, 'display', 'flex'),
+					A2($elm$html$Html$Attributes$style, 'flex-direction', 'column'),
+					A2($elm$html$Html$Attributes$style, 'gap', '10px')
+				]),
+			_List_fromArray(
+				[
+					A2(
+					$elm$html$Html$h3,
+					_List_fromArray(
+						[
+							A2($elm$html$Html$Attributes$style, 'margin-bottom', '0')
+						]),
+					_List_fromArray(
+						[
+							$elm$html$Html$text('Execution Trace')
+						])),
+					A2(
+					$elm$html$Html$div,
+					_List_fromArray(
+						[
+							A2($elm$html$Html$Attributes$style, 'background', '#f9f9f9'),
+							A2($elm$html$Html$Attributes$style, 'padding', '10px'),
+							A2($elm$html$Html$Attributes$style, 'border-radius', '4px'),
+							A2($elm$html$Html$Attributes$style, 'max-height', '400px'),
+							A2($elm$html$Html$Attributes$style, 'overflow-y', 'auto'),
+							A2($elm$html$Html$Attributes$style, 'font-family', 'monospace'),
+							A2($elm$html$Html$Attributes$style, 'font-size', '14px'),
+							$elm$html$Html$Attributes$id(traceId)
+						]),
+					$elm$core$List$isEmpty(traces) ? _List_fromArray(
+						[
+							A2(
 							$elm$html$Html$div,
 							_List_fromArray(
 								[
@@ -7734,22 +7665,36 @@ var $author$project$WritingYourOwnBeam$Shared$viewTraces = function (traces) {
 								]),
 							_List_fromArray(
 								[
-									$elm$html$Html$text(step)
-								]));
-					},
-					$elm$core$List$concat(
-						A2(
-							$elm$core$List$intersperse,
-							_List_fromArray(
-								['----']),
+									$elm$html$Html$text('No steps yet')
+								]))
+						]) : A2(
+						$elm$core$List$map,
+						function (step) {
+							return A2(
+								$elm$html$Html$div,
+								_List_fromArray(
+									[
+										A2($elm$html$Html$Attributes$style, 'margin', '2px 0'),
+										A2($elm$html$Html$Attributes$style, 'padding', '2px 0')
+									]),
+								_List_fromArray(
+									[
+										$elm$html$Html$text(step)
+									]));
+						},
+						$elm$core$List$concat(
 							A2(
-								$elm$core$List$map,
-								$elm$core$List$map($author$project$WritingYourOwnBeam$Shared$stepToString),
-								traces)))))
-			]));
-};
-var $author$project$WritingYourOwnBeam$Shared$viewScheduler = F3(
-	function (mode, scheduler, code) {
+								$elm$core$List$intersperse,
+								_List_fromArray(
+									['----']),
+								A2(
+									$elm$core$List$map,
+									$elm$core$List$map($author$project$WritingYourOwnBeam$Shared$stepToString),
+									traces)))))
+				]));
+	});
+var $author$project$WritingYourOwnBeam$Shared$viewScheduler = F4(
+	function (mode, scheduler, code, traceId) {
 		switch (mode.$) {
 			case 'SimpleProgram':
 				return A2(
@@ -7759,9 +7704,7 @@ var $author$project$WritingYourOwnBeam$Shared$viewScheduler = F3(
 							$elm$html$Html$Attributes$class('scheduler-layout'),
 							A2($elm$html$Html$Attributes$style, 'display', 'flex'),
 							A2($elm$html$Html$Attributes$style, 'gap', '20px'),
-							A2($elm$html$Html$Attributes$style, 'align-items', 'stretch'),
-							A2($elm$html$Html$Attributes$style, 'flex', '1'),
-							A2($elm$html$Html$Attributes$style, 'min-height', '0')
+							A2($elm$html$Html$Attributes$style, 'align-items', 'stretch')
 						]),
 					_List_fromArray(
 						[
@@ -7795,13 +7738,13 @@ var $author$project$WritingYourOwnBeam$Shared$viewScheduler = F3(
 									$elm$html$Html$Attributes$class('scheduler-traces-column'),
 									A2($elm$html$Html$Attributes$style, 'width', '25vw'),
 									A2($elm$html$Html$Attributes$style, 'min-width', '35ch'),
-									A2($elm$html$Html$Attributes$style, 'flex-shrink', '0'),
-									A2($elm$html$Html$Attributes$style, 'display', 'flex'),
-									A2($elm$html$Html$Attributes$style, 'flex-direction', 'column')
+									A2($elm$html$Html$Attributes$style, 'flex-shrink', '0')
 								]),
 							_List_fromArray(
 								[
-									$author$project$WritingYourOwnBeam$Shared$viewTraces(
+									A2(
+									$author$project$WritingYourOwnBeam$Shared$viewTraces,
+									traceId,
 									$elm$core$List$reverse(scheduler.revTraces))
 								]))
 						]));
@@ -7813,9 +7756,7 @@ var $author$project$WritingYourOwnBeam$Shared$viewScheduler = F3(
 							$elm$html$Html$Attributes$class('scheduler-layout'),
 							A2($elm$html$Html$Attributes$style, 'display', 'flex'),
 							A2($elm$html$Html$Attributes$style, 'gap', '20px'),
-							A2($elm$html$Html$Attributes$style, 'align-items', 'stretch'),
-							A2($elm$html$Html$Attributes$style, 'flex', '1'),
-							A2($elm$html$Html$Attributes$style, 'min-height', '0')
+							A2($elm$html$Html$Attributes$style, 'align-items', 'stretch')
 						]),
 					_List_fromArray(
 						[
@@ -7853,13 +7794,13 @@ var $author$project$WritingYourOwnBeam$Shared$viewScheduler = F3(
 									$elm$html$Html$Attributes$class('scheduler-traces-column'),
 									A2($elm$html$Html$Attributes$style, 'width', '25vw'),
 									A2($elm$html$Html$Attributes$style, 'min-width', '35ch'),
-									A2($elm$html$Html$Attributes$style, 'flex-shrink', '0'),
-									A2($elm$html$Html$Attributes$style, 'display', 'flex'),
-									A2($elm$html$Html$Attributes$style, 'flex-direction', 'column')
+									A2($elm$html$Html$Attributes$style, 'flex-shrink', '0')
 								]),
 							_List_fromArray(
 								[
-									$author$project$WritingYourOwnBeam$Shared$viewTraces(
+									A2(
+									$author$project$WritingYourOwnBeam$Shared$viewTraces,
+									traceId,
 									$elm$core$List$reverse(scheduler.revTraces))
 								]))
 						]));
@@ -7871,9 +7812,7 @@ var $author$project$WritingYourOwnBeam$Shared$viewScheduler = F3(
 							$elm$html$Html$Attributes$class('scheduler-layout'),
 							A2($elm$html$Html$Attributes$style, 'display', 'flex'),
 							A2($elm$html$Html$Attributes$style, 'gap', '20px'),
-							A2($elm$html$Html$Attributes$style, 'align-items', 'stretch'),
-							A2($elm$html$Html$Attributes$style, 'flex', '1'),
-							A2($elm$html$Html$Attributes$style, 'min-height', '0')
+							A2($elm$html$Html$Attributes$style, 'align-items', 'stretch')
 						]),
 					_List_fromArray(
 						[
@@ -7911,13 +7850,13 @@ var $author$project$WritingYourOwnBeam$Shared$viewScheduler = F3(
 									$elm$html$Html$Attributes$class('scheduler-traces-column'),
 									A2($elm$html$Html$Attributes$style, 'width', '25vw'),
 									A2($elm$html$Html$Attributes$style, 'min-width', '35ch'),
-									A2($elm$html$Html$Attributes$style, 'flex-shrink', '0'),
-									A2($elm$html$Html$Attributes$style, 'display', 'flex'),
-									A2($elm$html$Html$Attributes$style, 'flex-direction', 'column')
+									A2($elm$html$Html$Attributes$style, 'flex-shrink', '0')
 								]),
 							_List_fromArray(
 								[
-									$author$project$WritingYourOwnBeam$Shared$viewTraces(
+									A2(
+									$author$project$WritingYourOwnBeam$Shared$viewTraces,
+									traceId,
 									$elm$core$List$reverse(scheduler.revTraces))
 								]))
 						]));
@@ -7936,7 +7875,6 @@ var $author$project$WritingYourOwnBeam$Shared$viewDemoLayout = function (config)
 				$elm$html$Html$Attributes$class('demo-layout-container'),
 				A2($elm$html$Html$Attributes$style, 'padding', '20px'),
 				A2($elm$html$Html$Attributes$style, 'font-family', '\'JetBrains Mono\''),
-				A2($elm$html$Html$Attributes$style, 'height', '100vh'),
 				A2($elm$html$Html$Attributes$style, 'display', 'flex'),
 				A2($elm$html$Html$Attributes$style, 'flex-direction', 'column'),
 				A2($elm$html$Html$Attributes$style, 'box-sizing', 'border-box')
@@ -7960,9 +7898,7 @@ var $author$project$WritingYourOwnBeam$Shared$viewDemoLayout = function (config)
 					[
 						A2($elm$html$Html$Attributes$style, 'display', 'flex'),
 						A2($elm$html$Html$Attributes$style, 'flex-direction', 'column'),
-						A2($elm$html$Html$Attributes$style, 'gap', '20px'),
-						A2($elm$html$Html$Attributes$style, 'flex', '1'),
-						A2($elm$html$Html$Attributes$style, 'min-height', '0')
+						A2($elm$html$Html$Attributes$style, 'gap', '20px')
 					]),
 				_List_fromArray(
 					[
@@ -8129,7 +8065,7 @@ var $author$project$WritingYourOwnBeam$Shared$viewDemoLayout = function (config)
 										'Step ' + $elm$core$String$fromInt(stepNumber))
 									]))
 							])),
-						A3($author$project$WritingYourOwnBeam$Shared$viewScheduler, config.schedulerMode, currentScheduler, config.codeExample)
+						A4($author$project$WritingYourOwnBeam$Shared$viewScheduler, config.schedulerMode, currentScheduler, config.codeExample, config.traceId)
 					]))
 			]));
 };
@@ -8159,7 +8095,8 @@ var $author$project$WritingYourOwnBeam$Demo3$view = function (model) {
 			schedulerMode: $author$project$WritingYourOwnBeam$Shared$ProcessTable,
 			stepBackward: $author$project$WritingYourOwnBeam$Demo3$StepBackward,
 			stepForward: $author$project$WritingYourOwnBeam$Demo3$StepForward,
-			title: 'Demo 3: Spawn'
+			title: 'Demo 3: Spawn',
+			traceId: 'trace3'
 		});
 };
 var $author$project$WritingYourOwnBeam$Demo3$main = $elm$browser$Browser$element(

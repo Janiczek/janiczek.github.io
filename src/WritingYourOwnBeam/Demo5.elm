@@ -1,7 +1,6 @@
 module WritingYourOwnBeam.Demo5 exposing (main)
 
 import Browser
-import Browser.Dom
 import Html exposing (Html)
 import List.NonEmpty.Zipper as Zipper exposing (Zipper)
 import WritingYourOwnBeam.Scheduler as Scheduler exposing (Scheduler)
@@ -20,7 +19,6 @@ type Msg
     | Reset
     | UpdateBudget String
     | ResetWithBudget Int
-    | HasScrolledToBottomOfTrace (Result Browser.Dom.Error ())
 
 
 init : () -> ( Model, Cmd Msg )
@@ -50,14 +48,12 @@ update msg model =
     case msg of
         StepForward ->
             ( Shared.handleStepForward model
-            , Shared.jumpToBottomOfTraces
-                |> Cmd.map HasScrolledToBottomOfTrace
+            , Shared.jumpToBottomOfTraces "trace5"
             )
 
         StepBackward ->
             ( Shared.handleStepBackward model
-            , Shared.jumpToBottomOfTraces
-                |> Cmd.map HasScrolledToBottomOfTrace
+            , Shared.jumpToBottomOfTraces "trace5"
             )
 
         Reset ->
@@ -72,11 +68,6 @@ update msg model =
         ResetWithBudget budgetInt ->
             initWithBudget budgetInt
 
-        HasScrolledToBottomOfTrace _ ->
-            ( model
-                |> Shared.handleHasScrolledToBottomOfTrace
-            , Cmd.none
-            )
 
 
 view : Model -> Html Msg
@@ -89,6 +80,7 @@ view model =
         , history = model.history
         , schedulerMode = Shared.ProcessTableWithMailbox
         , codeExample = Scheduler.code5
+        , traceId = "trace5"
         , additionalControls = []
         , budgetControls =
             Just

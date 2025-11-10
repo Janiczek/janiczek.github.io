@@ -1,7 +1,6 @@
 module WritingYourOwnBeam.Demo3 exposing (main)
 
 import Browser
-import Browser.Dom
 import Html exposing (Html)
 import Html.Attributes
 import Html.Events
@@ -21,7 +20,6 @@ type Msg
     | StepBackward
     | Reset
     | HintAtProblem
-    | HasScrolledToBottomOfTrace (Result Browser.Dom.Error ())
 
 
 init : () -> ( Model, Cmd Msg )
@@ -53,14 +51,12 @@ update msg model =
     case msg of
         StepForward ->
             ( Shared.handleStepForward model
-            , Shared.jumpToBottomOfTraces
-                |> Cmd.map HasScrolledToBottomOfTrace
+            , Shared.jumpToBottomOfTraces "trace3"
             )
 
         StepBackward ->
             ( Shared.handleStepBackward model
-            , Shared.jumpToBottomOfTraces
-                |> Cmd.map HasScrolledToBottomOfTrace
+            , Shared.jumpToBottomOfTraces "trace3"
             )
 
         HintAtProblem ->
@@ -69,11 +65,6 @@ update msg model =
         Reset ->
             init ()
 
-        HasScrolledToBottomOfTrace _ ->
-            ( model
-                |> Shared.handleHasScrolledToBottomOfTrace
-            , Cmd.none
-            )
 
 
 view : Model -> Html Msg
@@ -91,6 +82,7 @@ view model =
 
             else
                 Scheduler.code3
+        , traceId = "trace3"
         , additionalControls =
             [ Html.button
                 [ Html.Attributes.class "demo-button"
