@@ -2,6 +2,8 @@
 
 This is my [Code BEAM Europe 2025](https://codebeameurope.com/) talk, converted to a blogpost.
 
+> EDIT 2025-11-10: Hacker News folks pointed out it might not be clear to everybody what BEAM is: it's the virtual machine for languages like Erlang, Elixir and Gleam. [See Wikipedia.](https://en.wikipedia.org/wiki/BEAM_(Erlang_virtual_machine))
+
 I was always fascinated with BEAM, how it allowed easy spawning of processes that didn't share state, allowed for sending and selectively receiving messages, and linking to each other thus enabling creation of supervision trees.
 
 It's an interesting set of primitives that interact in a nice way, and are in my view responsible for much of the appeal of BEAM languages. I wanted to see how much it takes to support these primitives, and I set out to write my own toy MVP implementation of BEAM.
