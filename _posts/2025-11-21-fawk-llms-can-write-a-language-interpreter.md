@@ -21,7 +21,7 @@ AWK.
 
 It got hairy very fast: I needed to implement:
 * hashing of strings and 2D arrays (by piping to `md5sum`)
-* a global ~set~ array of seen states
+* a global ~~set~~ array of seen states
 * a way to serialize and deserialize a 2D array to/from a string
 * and a few associative arrays for retrieving this serialized array by its
   hash.
