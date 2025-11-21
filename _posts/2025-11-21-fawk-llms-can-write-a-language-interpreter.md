@@ -1,4 +1,4 @@
-# FAWK: LLVMs can write a language interpreter
+# FAWK: LLMs can write a language interpreter
 
 After reading the book [The AWK Programming Language](https://www.awk.dev/)
 _(recommended!)_, I was planning to try [AWK](https://en.wikipedia.org/wiki/AWK)
