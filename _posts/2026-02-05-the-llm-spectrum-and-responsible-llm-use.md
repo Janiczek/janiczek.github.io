@@ -29,8 +29,8 @@ the other side.
 
 While it's fun to experience this extreme -- "write me an app that does XYZ" --
 and eventually see your side project drive into a ditch, I don't believe it's
-viable for anything long term (with currently state of the art of models: Opus
-4.5 as of the time of writing).
+viable for anything long term (with current state-of-the-art models: Opus
+4.5 as of the time of writing. _Yes I know, Opus 4.6 released today; I haven't tried it yet._).
 
 You don't know the codebase, tests are non-existent or bad or there's not
 enough of them... You're just hoping adding a new feature or fixing a bug
