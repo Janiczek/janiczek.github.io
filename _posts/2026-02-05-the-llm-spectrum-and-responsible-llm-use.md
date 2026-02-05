@@ -12,8 +12,22 @@ at all, and work-safe? (By work-safe I mean, you understand the code you
 submitted in relation to the rest of the codebase, and the code meets some
 quality bar.)
 
-<div class="theme_fullscreen" style="padding: 0 1em 1em">
+<style>
+.theme_fullscreen {
+    display: flex;
+    justify-content: center;
+    padding: 0 1em 1em;
+}
+.theme_fullscreen img {
+    width: calc(100dvw - 2em);
+    max-width: 952px;
+}
+</style>
+
+<div class="theme_fullscreen">
+<a href="/assets/images/2026-02-05-the-llm-spectrum-and-responsible-llm-use/spectrum_1.png">
 <img src="/assets/images/2026-02-05-the-llm-spectrum-and-responsible-llm-use/spectrum_1.png" alt="The spectrum (0.00, 1.00)">
+</a>
 </div>
 
 _(Note: the specific numbers are made up and the points don't matter.)_
@@ -41,8 +55,10 @@ I think it's not controversial to mark this one as unsafe for work.
 
 ## `0.70` (dev instructing a junior dev)
 
-<div class="theme_fullscreen" style="padding: 0 1em 1em">
+<div class="theme_fullscreen">
+<a href="/assets/images/2026-02-05-the-llm-spectrum-and-responsible-llm-use/spectrum_2.png">
 <img src="/assets/images/2026-02-05-the-llm-spectrum-and-responsible-llm-use/spectrum_2.png" alt="The spectrum (0.70)">
+</a>
 </div>
 
 So, in a not quite binary-search style we go to the middle. (I'd mark this one
@@ -63,8 +79,10 @@ This might be controversial, but I'll say it's not enough for serious work.
 
 ## `0.20` (prompt-less `Tab` autocomplete)
 
-<div class="theme_fullscreen" style="padding: 0 1em 1em">
+<div class="theme_fullscreen">
+<a href="/assets/images/2026-02-05-the-llm-spectrum-and-responsible-llm-use/spectrum_3.png">
 <img src="/assets/images/2026-02-05-the-llm-spectrum-and-responsible-llm-use/spectrum_3.png" alt="The spectrum (0.20)">
+</a>
 </div>
 
 Instead of exploring the space from the right, let's explore it from the safe
@@ -109,8 +127,10 @@ point in between the usable and the unusable part of the spectrum.
 
 ## `0.40` (localized `Cmd+K` prompts in editor)
 
-<div class="theme_fullscreen" style="padding: 0 1em 1em">
+<div class="theme_fullscreen">
+<a href="/assets/images/2026-02-05-the-llm-spectrum-and-responsible-llm-use/spectrum_4.png">
 <img src="/assets/images/2026-02-05-the-llm-spectrum-and-responsible-llm-use/spectrum_4.png" alt="The spectrum (0.40)">
+</a>
 </div>
 
 There's another mode of using LLMs, which I like to call the `Cmd+K` mode
@@ -176,8 +196,10 @@ loops](https://github.com/snarktank/ralph) and surely more pop up every day.
 I think they live somewhere between the rightmost two points on my made-up
 spectrum:
 
-<div class="theme_fullscreen" style="padding: 0 1em 1em">
-<img src="/assets/images/2026-02-05-the-llm-spectrum-and-responsible-llm-use/spectrum_4.png" alt="The spectrum (0.40)">
+<div class="theme_fullscreen">
+<a href="/assets/images/2026-02-05-the-llm-spectrum-and-responsible-llm-use/spectrum_4.png">
+<img src="/assets/images/2026-02-05-the-llm-spectrum-and-responsible-llm-use/spectrum_4.png" alt="The full spectrum">
+</a>
 </div>
 
 I don't have enough experience with whether these methodologies make the code
@@ -213,8 +235,10 @@ publish the moment we started delegating it to LLMs.
 
 ## Conclusion
 
-<div class="theme_fullscreen" style="padding: 0 1em 1em">
-<img src="/assets/images/2026-02-05-the-llm-spectrum-and-responsible-llm-use/spectrum_4.png" alt="The spectrum (0.40)">
+<div class="theme_fullscreen">
+<a href="/assets/images/2026-02-05-the-llm-spectrum-and-responsible-llm-use/spectrum_4.png">
+<img src="/assets/images/2026-02-05-the-llm-spectrum-and-responsible-llm-use/spectrum_4.png" alt="The full spectrum">
+</a>
 </div>
 
 The "agent" part of the spectrum doesn't seem to overlap with the interval
