@@ -46,7 +46,7 @@ I think it's not controversial to mark this one as unsafe for work.
 </div>
 
 So, in a not quite binary-search style we go to the middle. (I'd mark this one
-as `0.50` but then my crude Figma chart labels would overflow. Let's not speak
+as `0.50` but then my crude Figma chart labels would overlap later. Let's not speak
 of it again.)
 
 We've now dropped from high-level prompts to a lower level. We specify
@@ -95,7 +95,7 @@ On the topic of completing function bodies, I think there's a risk here of just
 accepting whatever the LLM suggests, and then reading through it and tweaking
 it or accepting it. That's slightly sketchy to me. I personally find that
 reviewing code is much harder than writing it, and it's hard to switch between
-these two contexts on the fly. Maybe this is why (mine) reviews of LLM code are
+these two contexts on the fly. Maybe this is why (my) reviews of LLM code are
 so half-hearted.
 
 So, it seems to me that this way of working with LLMs is safe, as long as you
