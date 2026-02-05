@@ -148,7 +148,7 @@ outside it.)
 
 I value having an up-to-date mental model of the code in my head and being able
 to recollect and roughly explain what each high-level part of it does. (I can
-do this for code I haven't touched in years; I can't do this for agent-written
+do this for some code I haven't touched in years; I can't do this for agent-written
 code I have willed into existence last week.)
 
 With this localized `Cmd+K` generation, you haven't written some parts of the
@@ -187,7 +187,7 @@ big deal), instead of it becoming a black box over time and degrading your
 interaction with the agent and the codebase back towards the `1.00` YOLO vibe
 coding extreme.
 
-I'm pretty vanilla; I've tried `spec-kit` on a compiler project once but it
+I'm pretty vanilla when it comes to agents; I've tried `spec-kit` on a compiler project once but it
 seems to have hit a wall when given a hard enough sub-task.
 
 > In my case, the model couldn't keep conversions between a language AST and
@@ -258,4 +258,4 @@ the actual coding work to an agent.
 
 _P.S.: I can't wait to read this in a year and cringe at my views._
 
-_P.P.S.: Isn't it ironic to write this whole thing and have the link to a previous post be about vibe coding a whole thing_ ⬇️. _I'd say that one goes in the_ "this is a throwaway experiment and quality doesn't matter" _category, so I still believe I'm consistent with myself here!_
+_P.P.S.: Isn't it ironic to write this whole thing and have the link to a previous post be about vibe coding a programming language interpreter_ ⬇️. _I'd say that one goes in the_ "this is a throwaway experiment and quality doesn't matter" _category, so I believe I'm still consistent with myself here!_
