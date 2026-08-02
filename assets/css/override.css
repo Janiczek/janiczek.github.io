@@ -158,6 +158,11 @@ pre:hover>code.hljs {
   width: 100dvw;
 }
 
+p:has(> span.next-two-code-blocks-have-box-drawing) + pre,
+p:has(> span.next-two-code-blocks-have-box-drawing) + pre + pre {
+    line-height: 125%;
+}
+
 /* Responsive styles for scheduler visualizers */
 @media (max-width: 768px) {
   /* Stack layout vertically on mobile */

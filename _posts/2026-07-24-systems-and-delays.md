@@ -2,8 +2,6 @@
 
 _where delays are shown to be counterintuitive._
 
-[![No AI was used when writing this blogpost or the linked Elm simulator.](/assets/images/written_by_a_human.png)](https://ko-fi.com/s/4662b19f61)
-
 Leaving the house (and the country) for a week or two during the holiday season is a great time to get out of my stereotypical ways of passing free time (entirely too much YouTube, Lobste.rs, HackerNews and BlueSky) and try something else.
 
 For my recent vacation I have packed some grid paper to make a bitmap font, and two books: the first one was [_Nachové pustiny_](https://www.goldendog.cz/produkt/nachove-pustiny/): a Czech post-apocalyptic novel to get some inspiration for my ["Fallout but in Czech Republic" MMO game](https://nuashworld.com), and the other was [_Thinking in Systems_](https://en.wikipedia.org/wiki/Thinking_In_Systems:_A_Primer): a book recommended at work (and bought with my work education budget) which was collecting dust in my bookshelf for a good few months now.
