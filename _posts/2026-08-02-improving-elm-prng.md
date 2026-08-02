@@ -1,7 +1,7 @@
 # Improving Elm PRNG
 
-_A bug is uncovered in the de facto PRNG library and alternative PRNG algorithms
-are suggested._
+_A bug is uncovered in the de facto PRNG library in the Elm language ecosystem
+and alternative PRNG algorithms are suggested._
 
 I'm not completely sure where I stumbled upon it, but I watched the [Noise-based
 RNG](https://www.youtube.com/watch?v=LWFzPP8ZbdU) GDC talk this Saturday morning.
@@ -52,9 +52,9 @@ Squirrel then claims the hash function based RNGs are more performant than the
 LCG ones in his measurements, which elevated the talk from a neat idea to "let's
 test it out!"
 
-Specifically, I want to implement Squirrel's suggested hash function in Elm and
-compare it to the "official" Elm PRNG in terms of performance and randomness
-test batteries like
+Specifically, I want to implement Squirrel's suggested hash function in
+[Elm](https://elm-lang.org) and compare it to the "official" Elm PRNG in terms
+of performance and randomness test batteries like
 [Dieharder](https://webhome.phy.duke.edu/~rgb/General/dieharder.php) and
 [TestU01](https://www.iro.umontreal.ca/~simardr/testu01/tu01.html).
 
