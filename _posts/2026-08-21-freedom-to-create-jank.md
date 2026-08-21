@@ -12,11 +12,11 @@ oh this game needs better graphics before I let anybody see it, oh the blog
 needs to be redesigned."
 
 The recent wave of LLM slop which has questionable quality but _GREAT DESIGN_
-(although now recognizable and increasingly off-putting because of the
-association) by default; landing pages with beautiful serif headings and
-monospace menus, READMEs with a ton of emojis and 20 different subheadings, _all
-of this makes me crave authenticity_ instead of professionalism and frees me to
-show the human inside my creations instead, however janky it might look.
+by default (although now recognizable and increasingly off-putting because of
+the association); landing pages with beautiful serif headings and monospace
+menus, READMEs with a ton of emojis and 20 different subheadings, _all of this
+makes me crave authenticity_ instead of professionalism and frees me to show
+the human inside my creations instead, however janky it might look.
 
 Michael Lynch of ["Refactoring English"](https://refactoringenglish.com/) said it best:
 
